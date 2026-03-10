@@ -1,0 +1,3851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARKK AI — Stack Intelligence for Vibe Coders</title>
+  <meta name="description" content="Tell TARKK what you're building. Get the exact no-code/AI stack in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f8f8fa;
+      --border: #e4e4e7;
+      --border-dark: #18181b;
+      --accent: #6B21E8;
+      --accent-2: #7c3aed;
+      --accent-light: #f5f3ff;
+      --text: #09090b;
+      --text-mid: #52525b;
+      --text-muted: #a1a1aa;
+      --green: #15803d;
+      --amber: #b45309;
+      --font-d: 'Outfit', -apple-system, sans-serif;
+      --font-m: 'IBM Plex Mono', 'Courier New', monospace;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    /* ── RESET ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-d);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 20px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .logo-sq {
+      width: 9px;
+      height: 9px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-d);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn-nav-cta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 9px 18px;
+      transition: background 0.15s;
+    }
+
+    .btn-nav-cta:hover {
+      background: var(--accent-2);
+    }
+
+    /* ══════════════════════════════
+       HERO — dark canvas background
+    ══════════════════════════════ */
+    #hero {
+      position: relative;
+      background: #faf9f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: 76px;
+      overflow: hidden;
+    }
+
+    /* Canvas background */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 100px 80px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-left {
+      min-width: 0;
+    }
+
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-heading {
+      font-family: var(--font-d);
+      font-size: clamp(44px, 5.8vw, 68px);
+      font-weight: 800;
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .hero-heading .h-accent {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      font-family: var(--font-d);
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 28px;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      font-family: var(--font-d);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 28px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-dark);
+      color: var(--text);
+    }
+
+    .hero-trust {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stars {
+      color: #b45309;
+    }
+
+    /* ── HERO RIGHT — TERMINAL MOCKUP ── */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .hero-term {
+      width: 100%;
+      min-height: 460px;
+      background: #0f0f14;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 56px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .term-chrome {
+      background: #1a1a22;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .term-chrome-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tdc {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .tdc-r {
+      background: rgba(255, 95, 87, 0.6);
+    }
+
+    .tdc-y {
+      background: rgba(255, 189, 46, 0.6);
+    }
+
+    .tdc-g {
+      background: rgba(39, 201, 63, 0.6);
+    }
+
+    .term-title-lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.28);
+      letter-spacing: 0.06em;
+    }
+
+    .term-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .term-prompt {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .term-ps {
+      color: var(--accent);
+    }
+
+    .term-cmd {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .term-badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .term-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+
+    .term-badge.amber {
+      color: #fbbf24;
+      border-color: rgba(251, 191, 36, 0.3);
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .term-badge.green {
+      color: #4ade80;
+      border-color: rgba(74, 222, 128, 0.3);
+      background: rgba(74, 222, 128, 0.08);
+    }
+
+    .term-badge.grey {
+      color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .term-sec-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent);
+      opacity: 0.8;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .term-tool {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 3px 0;
+      display: flex;
+      gap: 8px;
+    }
+
+    .term-step {
+      color: var(--accent);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .term-tname {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 700;
+    }
+
+    .term-trole {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .term-conn-block {
+      margin-top: 14px;
+    }
+
+    .term-conn {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.38);
+      padding: 2px 0;
+      display: flex;
+      gap: 8px;
+    }
+
+    .term-caret {
+      color: var(--accent);
+      font-size: 16px;
+      margin-top: 10px;
+      animation: blink-cur 1s step-end infinite;
+    }
+
+    @keyframes blink-cur {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ══════════════════════════════
+       METRICS BAR
+    ══════════════════════════════ */
+    .metrics-bar {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 20px 80px;
+      background: #f5f3ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 52px;
+      flex: 1;
+      max-width: 220px;
+    }
+
+    .metric-val {
+      font-family: var(--font-d);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .metric-div {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════
+       SECTION SEPARATOR
+    ══════════════════════════════ */
+    .how-sep {
+      background: var(--bg-2);
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .how-sep-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .how-sep-arrow {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      color: var(--accent);
+      animation: bounce-down 1.5s ease-in-out infinite;
+    }
+
+    @keyframes bounce-down {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(7px);
+      }
+    }
+
+    /* ══════════════════════════════
+       TICKER STRIP
+    ══════════════════════════════ */
+    .ticker-wrap {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 18px 0;
+      background: #faf9f6;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Fade vignette on edges */
+    .ticker-wrap::before,
+    .ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ticker-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #faf9f6, transparent);
+    }
+
+    .ticker-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #faf9f6, transparent);
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      animation: marquee 36s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 28px;
+      white-space: nowrap;
+      cursor: default;
+      transition: opacity 0.2s;
+    }
+
+    .ticker-item:hover .ticker-logo {
+      filter: grayscale(0) brightness(1) !important;
+      opacity: 1;
+    }
+
+    .ticker-item:hover .ticker-name {
+      color: var(--text) !important;
+    }
+
+    .ticker-logo {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      filter: grayscale(1) brightness(0.8);
+      opacity: 0.55;
+      transition: filter 0.2s, opacity 0.2s;
+      object-fit: contain;
+    }
+
+    .ticker-name {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .ticker-sep {
+      color: var(--border);
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════
+       PROBLEM SECTION
+    ══════════════════════════════ */
+    #problem {
+      min-height: 100vh;
+      background: #ffffff;
+      border-top: 1px solid #e4e4e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 100px;
+    }
+
+    .problem-inner {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 56px;
+      display: block;
+    }
+
+    .questions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .question {
+      font-family: var(--font-d);
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    /* Per-question overrides */
+    .question-q1 {
+      font-size: 44px;
+      font-weight: 800;
+      color: #09090b;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .question-tools {
+      font-family: var(--font-m);
+      font-size: 18px;
+      color: #a1a1aa;
+      line-height: 1.5;
+      min-height: 30px;
+      margin-bottom: 40px;
+    }
+
+    .question-q3 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #09090b;
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .question-q4 {
+      font-size: 52px;
+      font-weight: 800;
+      color: #5b21b6;
+      line-height: 1.05;
+      margin-bottom: 64px;
+    }
+
+    .q4-cursor {
+      display: inline;
+      color: #5b21b6;
+      animation: blink-q4 0.7s step-end infinite;
+    }
+
+    @keyframes blink-q4 {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Styled divider */
+    .divider-star {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 56px 0;
+      font-size: 18px;
+      color: #5b21b6;
+    }
+
+    .divider-star::before,
+    .divider-star::after {
+      content: '';
+      flex: 1;
+      max-width: 100px;
+      height: 1px;
+      background: #e4e4e7;
+      margin: 0 16px;
+    }
+
+    .solution-heading {
+      font-family: var(--font-d);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .heading-highlight {
+      background: #f5f3ff;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    .solution-sub {
+      font-family: var(--font-d);
+      font-size: 18px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .feature-pills {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .pill {
+      font-family: var(--font-d);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-mid);
+      border: 1px solid #e4e4e7;
+      border-radius: 4px;
+      padding: 10px 18px;
+      background: #ffffff;
+      white-space: nowrap;
+      transition: all 150ms;
+      cursor: default;
+    }
+
+    .pill:hover {
+      border-color: #5b21b6;
+      color: #5b21b6;
+      background: #f5f3ff;
+    }
+
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-cta-main {
+      font-family: var(--font-d);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      background: #5b21b6;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 15px 36px;
+      width: auto;
+      min-width: 280px;
+      display: block;
+      margin: 0 auto;
+      transition: all 180ms;
+    }
+
+    .btn-cta-main:hover {
+      background: #4c1d95;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(91, 33, 182, 0.28);
+    }
+
+    .trust-line {
+      font-family: var(--font-m);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── HOW TARKK WORKS — 3-step cards ── */
+    .how-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    .how-step {
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      padding: 32px 28px;
+      background: #ffffff;
+      transition: all 200ms;
+      cursor: default;
+    }
+
+    .how-step:hover {
+      border-color: #5b21b6;
+      box-shadow: 0 4px 24px rgba(91, 33, 182, 0.10);
+    }
+
+    .how-step:hover .step-num {
+      color: #c4b5fd;
+    }
+
+    .step-num {
+      font-family: var(--font-d);
+      font-size: 52px;
+      font-weight: 800;
+      color: #d4d4d8;
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .step-title {
+      font-family: var(--font-d);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-family: var(--font-d);
+      font-size: 14px;
+      color: #71717a;
+      line-height: 1.65;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════
+       CHATBOT OVERLAY — FULL-SCREEN REDESIGN
+    ══════════════════════════════ */
+    #chat-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      background: #f0ede8;
+      opacity: 0;
+      transition: opacity 150ms ease;
+      flex-direction: column;
+    }
+
+    #chat-overlay.open {
+      opacity: 1;
+    }
+
+    #chat-overlay.open .co-shell {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Shell — the animated container */
+    .co-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 200ms ease 150ms, opacity 200ms ease 150ms;
+    }
+
+    /* ── HEADER ── */
+    .co-header {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      right: 0;
+      z-index: 20;
+      height: 56px;
+      background: #f0ede8;
+      border-bottom: 1px solid #e0ddd8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      flex-shrink: 0;
+    }
+
+    .co-hdr-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .co-logo {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 18px;
+      color: #2d2a26;
+      line-height: 1;
+    }
+
+    .co-hdr-divider {
+      width: 1px;
+      height: 14px;
+      background: #dedad4;
+      flex-shrink: 0;
+    }
+
+    .co-subtitle {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #9c9589;
+      line-height: 1;
+    }
+
+    .co-hdr-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .live-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #16a34a;
+      animation: live-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes live-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+      }
+
+      50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 5px rgba(22, 163, 74, 0);
+      }
+    }
+
+    .live-txt {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #16a34a;
+    }
+
+    .co-hdr-sep {
+      width: 1px;
+      height: 16px;
+      background: #e4e4e7;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .co-gear {
+      font-size: 16px;
+      color: #9c9589;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+
+    .co-gear:hover {
+      color: #2d2a26;
+    }
+
+    .btn-close {
+      font-family: var(--font-m);
+      font-size: 12px;
+      color: #9c9589;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 8px;
+      transition: color 0.15s;
+    }
+
+    .btn-close:hover {
+      color: #2d2a26;
+    }
+
+    /* Settings popover */
+    .co-popover {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      padding: 16px 20px;
+      width: 300px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      z-index: 30;
+    }
+
+    .co-popover.visible {
+      display: block;
+    }
+
+    .api-label {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #a1a1aa;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .api-row {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+
+    .api-input {
+      flex: 1;
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #09090b;
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      border-radius: 4px;
+      padding: 7px 10px;
+      outline: none;
+      min-width: 0;
+      transition: border-color 0.15s;
+    }
+
+    .api-input:focus {
+      border-color: #5b21b6;
+    }
+
+    .api-save {
+      font-family: var(--font-m);
+      font-size: 10px;
+      background: #09090b;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 11px;
+      transition: background 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .api-save:hover {
+      background: #27272a;
+    }
+
+    .api-note {
+      font-family: var(--font-m);
+      font-size: 9px;
+      color: #a1a1aa;
+    }
+
+    /* ── MESSAGES ── */
+    .chat-msgs {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 24px 150px;
+      background: #f0ede8;
+      margin-top: 56px;
+      margin-left: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Welcome state */
+    .co-welcome {
+      max-width: 680px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+      padding-top: 60px;
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+
+    .co-welcome.hiding {
+      opacity: 0;
+      transform: translateY(-16px);
+      pointer-events: none;
+    }
+
+    .co-welcome-h {
+      font-family: var(--font-d);
+      font-size: 38px;
+      font-weight: 700;
+      color: #2d2a26;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .co-welcome-sub {
+      font-family: var(--font-d);
+      font-size: 16px;
+      color: #9c9589;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    /* Large centered input card */
+    .co-welcome-card {
+      background: #ffffff;
+      border: 1px solid #e0ddd8;
+      border-radius: 16px;
+      padding: 20px 20px 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      text-align: left;
+      margin-bottom: 20px;
+      transition: box-shadow 0.2s;
+    }
+
+    .co-welcome-card:focus-within {
+      box-shadow: 0 4px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .co-welcome-ta {
+      width: 100%;
+      font-family: var(--font-d);
+      font-size: 15px;
+      color: #2d2a26;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      line-height: 1.6;
+      min-height: 72px;
+      max-height: 160px;
+    }
+
+    .co-welcome-ta::placeholder {
+      color: #c4bfb8;
+    }
+
+    .co-welcome-card-foot {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .co-welcome-send {
+      font-family: var(--font-m);
+      font-size: 12px;
+      background: #5b21b6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .co-welcome-send:hover:not(:disabled) {
+      background: #4c1d95;
+    }
+
+    .co-welcome-send:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* Suggestion chips */
+    .co-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .co-chip {
+      font-family: var(--font-d);
+      font-size: 13px;
+      color: #6b6660;
+      background: #ebe8e2;
+      border: 1px solid #ddd9d3;
+      border-radius: 20px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    .co-chip:hover {
+      background: #ffffff;
+      border-color: #b8b0a8;
+      color: #2d2a26;
+    }
+
+    /* Message layout */
+    .msg {
+      display: flex;
+      flex-direction: column;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .msg.user {
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .msg.assistant {
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .msg.assistant::before {
+      content: "▪ TARKK";
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #9c9589;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .msg-bubble {
+      font-family: var(--font-d);
+      font-size: 14px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .msg.user .msg-bubble {
+      background: #1a1a1a;
+      color: #ffffff;
+      border-radius: 16px 16px 4px 16px;
+      padding: 12px 18px;
+      max-width: 70%;
+    }
+
+    .msg.assistant .msg-bubble {
+      background: transparent;
+      border: none;
+      color: #1a1a1a;
+      max-width: 85%;
+      padding: 0;
+    }
+
+    .msg-time {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #c4bfb8;
+      margin-top: 4px;
+    }
+
+    /* Typing indicator */
+    .typing-bubble {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    .tdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9c9589;
+      animation: tdot-anim 1.4s infinite;
+    }
+
+    .tdot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .tdot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes tdot-anim {
+
+      0%,
+      60%,
+      100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+      }
+
+      30% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    /* Stack response */
+    .stack-resp {
+      font-family: var(--font-d);
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .resp-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .rbadge {
+      font-family: var(--font-m);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+
+    .rbadge.amber {
+      color: #b45309;
+      border-color: #fde68a;
+      background: #fffbeb;
+    }
+
+    .rbadge.green {
+      color: #15803d;
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+    }
+
+    .rbadge.grey {
+      color: #52525b;
+      border-color: #e4e4e7;
+      background: #f8f8fa;
+    }
+
+    .resp-sec {
+      margin-top: 16px;
+    }
+
+    .resp-hdr {
+      font-family: var(--font-m);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: #a1a1aa;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .resp-tool {
+      background: #fafafa;
+      border: 1px solid #e4e4e7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .resp-step {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #5b21b6;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .resp-tname {
+      font-family: var(--font-d);
+      font-size: 13px;
+      font-weight: 600;
+      color: #09090b;
+    }
+
+    .resp-trole {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #5b21b6;
+      font-weight: 400;
+    }
+
+    .resp-twhy {
+      font-family: var(--font-d);
+      font-size: 13px;
+      color: #71717a;
+      margin-top: 2px;
+    }
+
+    .resp-conn {
+      font-family: var(--font-m);
+      font-size: 13px;
+      color: #52525b;
+      padding: 6px 0;
+      border-bottom: 1px solid #f4f4f5;
+    }
+
+    .resp-plan {
+      font-family: var(--font-d);
+      font-size: 14px;
+      color: #52525b;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      border-left: 3px solid #5b21b6;
+      padding: 14px 16px;
+      background: #fafafa;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── SIDEBAR ── */
+    .co-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: #f0ede8;
+      border-right: 1px solid #e0ddd8;
+      display: flex;
+      flex-direction: column;
+      z-index: 25;
+      padding: 20px 0;
+    }
+
+    .co-sb-top {
+      padding: 0 16px;
+    }
+
+    .co-sb-logo {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 16px;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+
+    .co-sb-new {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #dedad4;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: var(--font-d);
+      font-size: 13px;
+      color: #3d3935;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .co-sb-new:hover {
+      border-color: #5b21b6;
+      background: #f5f3ff;
+    }
+
+    .co-sb-new-icon {
+      color: #5b21b6;
+      font-size: 16px;
+    }
+
+    .co-sb-divider {
+      height: 1px;
+      background: #e0ddd8;
+      margin: 16px 0;
+    }
+
+    .co-sb-history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 8px;
+    }
+
+    .co-sb-recents-label {
+      font-family: var(--font-m);
+      font-size: 9px;
+      color: #a1a1aa;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0 8px;
+      margin-bottom: 8px;
+    }
+
+    .co-sb-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-family: var(--font-d);
+      font-size: 12px;
+      color: #3d3935;
+      cursor: pointer;
+      transition: background 0.12s;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+    }
+
+    .co-sb-item:hover {
+      background: #e8e4de;
+    }
+
+    .co-sb-item.active {
+      background: #e0dbd3;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    .co-sb-item-title {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .item-menu-btn {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      color: #7c7469;
+      cursor: pointer;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.12s, color 0.12s;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .item-menu-btn:hover {
+      background: #d4cfc9;
+      color: #1a1a1a;
+    }
+
+    .co-sb-item:hover .item-menu-btn,
+    .item-menu-btn:focus {
+      display: flex;
+    }
+
+    .sb-dropdown {
+      display: none;
+      position: absolute;
+      background: #ffffff;
+      border: 1px solid #dedad4;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+      width: 160px;
+      z-index: 200;
+      padding: 4px 0;
+    }
+
+    .sb-dropdown-item {
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: var(--font-d);
+      font-size: 13px;
+      color: #3d3935;
+      transition: background 120ms;
+    }
+
+    .sb-dropdown-item:hover {
+      background: #f5f3f0;
+    }
+
+    .sb-dd-delete {
+      color: #dc2626;
+    }
+
+    .sb-dd-delete:hover {
+      background: #fff5f5;
+    }
+
+    .sb-dd-icon {
+      font-family: var(--font-m);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .co-sb-rename-input {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-d);
+      font-size: 12px;
+      color: #3d3935;
+      background: white;
+      border: 1px solid #5b21b6;
+      border-radius: 4px;
+      padding: 2px 6px;
+      outline: none;
+    }
+
+    .co-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1a1a1a;
+      color: #ffffff;
+      font-family: var(--font-m);
+      font-size: 12px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 200ms ease, transform 200ms ease;
+      pointer-events: none;
+    }
+
+    .co-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .co-sb-bottom {
+      padding: 16px 16px 0;
+      border-top: 1px solid #e0ddd8;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .co-sb-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #5b21b6;
+      color: #fff;
+      font-family: var(--font-m);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .co-sb-user-name {
+      font-family: var(--font-d);
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .co-sb-user-role {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #9c9589;
+    }
+
+    .co-mob-toggle {
+      font-family: var(--font-m);
+      font-size: 18px;
+      color: #7c7469;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px 4px 0;
+      line-height: 1;
+      display: none;
+    }
+
+    .co-mob-toggle:hover {
+      color: #2d2a26;
+    }
+
+    .co-sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 99;
+    }
+
+    .co-sidebar-overlay.visible {
+      display: block;
+    }
+
+    /* ── INPUT BAR ── */
+    .co-input-bar {
+      position: fixed;
+      bottom: 0;
+      left: 260px;
+      right: 0;
+      z-index: 20;
+      background: #f0ede8;
+      border-top: 1px solid #e0ddd8;
+      padding: 16px 24px 20px;
+    }
+
+    .co-input-content {
+      max-width: 860px;
+      width: calc(100% - 48px);
+      margin: 0 auto;
+    }
+
+    .co-input-field {
+      border: 1px solid #ddd9d3;
+      border-radius: 14px;
+      padding: 14px 16px 12px 18px;
+      min-height: 56px;
+      background: #ffffff;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .co-input-field:focus-within {
+      border-color: #b8b0a8;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .chat-ta {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      font-family: var(--font-d);
+      font-size: 15px;
+      color: #09090b;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      line-height: 1.6;
+      min-height: 52px;
+      max-height: 160px;
+      padding: 16px 18px;
+    }
+
+    .chat-ta::placeholder {
+      color: #a1a1aa;
+    }
+
+    .btn-send {
+      font-family: var(--font-m);
+      font-size: 12px;
+      background: #5b21b6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: background 0.15s;
+      align-self: flex-end;
+      margin-bottom: 2px;
+    }
+
+    .btn-send:hover:not(:disabled) {
+      background: #4c1d95;
+    }
+
+    .btn-send:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .co-input-note {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: #c4bfb8;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .spinner-sm {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: var(--border-dark);
+      color: #fff;
+      padding: 48px 24px 0;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .f-logo {
+      font-family: var(--font-d);
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .f-tagline {
+      font-family: var(--font-m);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .f-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .f-links a {
+      font-family: var(--font-m);
+      font-size: 12px;
+      color: #71717a;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .f-links a:hover {
+      color: #fff;
+    }
+
+    .f-right {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .f-built {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .f-name {
+      font-family: var(--font-d);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .f-role {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .f-link {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-top: 4px;
+      transition: color 0.15s;
+    }
+
+    .f-link:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #27272a;
+      padding: 20px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-bottom span {
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #52525b;
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        gap: 36px;
+      }
+
+      .metric-item {
+        padding: 0 32px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        padding: 72px 32px 44px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .metrics-bar {
+        padding: 16px 32px;
+      }
+
+      .metric-item {
+        padding: 0 24px;
+      }
+
+      .metric-val {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .hero-inner {
+        padding: 56px 24px 36px;
+      }
+
+      .hero-heading {
+        font-size: 40px;
+      }
+
+      .problem-inner {
+        max-width: 100%;
+      }
+
+      .how-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .co-subtitle {
+        display: none;
+      }
+
+      .co-sidebar {
+        transform: translateX(-260px);
+        transition: transform 200ms ease;
+        z-index: 100;
+      }
+
+      .co-sidebar.mob-open {
+        transform: translateX(0);
+      }
+
+      .co-mob-toggle {
+        display: block;
+      }
+
+      .co-header {
+        left: 0;
+      }
+
+      .co-input-bar {
+        left: 0;
+        padding: 12px 16px;
+      }
+
+      .co-input-content {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .chat-msgs {
+        margin-left: 0;
+        padding: 16px 16px 130px;
+      }
+
+      .co-welcome-h {
+        font-size: 28px;
+      }
+
+      .co-chip {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      .msg.user .msg-bubble,
+      .msg.assistant .msg-bubble {
+        max-width: 90%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .metrics-bar {
+        padding: 14px 16px;
+        gap: 0;
+      }
+
+      .metric-item {
+        padding: 0 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-heading {
+        font-size: 34px;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .feature-pills {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .chat-msgs {
+        padding: 16px;
+      }
+
+      .msg.user .msg-bubble,
+      .msg.assistant .msg-bubble {
+        max-width: 95%;
+      }
+
+      .metrics-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 16px;
+      }
+
+      .metric-div {
+        display: none;
+      }
+
+      .metric-item {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════
+       NAV
+  ══════════════════════════════ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#hero">
+      <span class="logo-sq"></span>TARKK
+    </a>
+    <div class="nav-links">
+      <a href="#problem">How it works</a>
+      <button class="btn-nav-cta" onclick="openChat()">Try Now →</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════
+       SECTION 1 — HERO (dark)
+  ══════════════════════════════ -->
+  <section id="hero">
+    <!-- Particle canvas background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Hero copy -->
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">AI-POWERED STACK INTELLIGENCE</div>
+        <h1 class="hero-heading">
+          Stop guessing.<br>
+          Start building<br>
+          <span class="h-accent">the right stack.</span>
+        </h1>
+        <p class="hero-sub">
+          Used by builders who've shipped 200+ products on no-code tools.
+          Tell TARKK what you're building. Get the exact stack in seconds.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="openChat()">Try TARKK Free →</button>
+          <button class="btn-secondary">Watch demo ▶</button>
+        </div>
+        <div class="hero-trust">
+          <span class="stars">★★★★★</span>&nbsp; Trusted by 500+ builders on Product Hunt
+        </div>
+      </div>
+
+      <!-- Terminal mockup (right column) -->
+      <div class="hero-right">
+        <div class="hero-term">
+          <div class="term-chrome">
+            <span class="term-chrome-dots">
+              <span class="tdc tdc-r"></span>
+              <span class="tdc tdc-y"></span>
+              <span class="tdc tdc-g"></span>
+            </span>
+            <span class="term-title-lbl">// tarkk — stack output</span>
+          </div>
+          <div class="term-body" id="term-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics bar -->
+    <div class="metrics-bar">
+      <div class="metric-item">
+        <span class="metric-val">500+</span>
+        <span class="metric-label">Builders using TARKK</span>
+      </div>
+      <div class="metric-div"></div>
+      <div class="metric-item">
+        <span class="metric-val">2 min</span>
+        <span class="metric-label">Avg. time to stack</span>
+      </div>
+      <div class="metric-div"></div>
+      <div class="metric-item">
+        <span class="metric-val">47+</span>
+        <span class="metric-label">No-code tools indexed</span>
+      </div>
+      <div class="metric-div"></div>
+      <div class="metric-item">
+        <span class="metric-val">Free</span>
+        <span class="metric-label">No signup needed</span>
+      </div>
+    </div>
+
+    <!-- Scrolling ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="ticker-track">
+        <!-- SET 1 -->
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=bubble.io&sz=32" alt="" />
+          <span class="ticker-name">Bubble</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=webflow.com&sz=32" alt="" />
+          <span class="ticker-name">Webflow</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=framer.com&sz=32" alt="" />
+          <span class="ticker-name">Framer</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=supabase.com&sz=32" alt="" />
+          <span class="ticker-name">Supabase</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=firebase.google.com&sz=32" alt="" />
+          <span class="ticker-name">Firebase</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=vercel.com&sz=32" alt="" />
+          <span class="ticker-name">Vercel</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" />
+          <span class="ticker-name">Notion</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=airtable.com&sz=32" alt="" />
+          <span class="ticker-name">Airtable</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="" />
+          <span class="ticker-name">Make</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=32" alt="" />
+          <span class="ticker-name">Cursor</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=replit.com&sz=32" alt="" />
+          <span class="ticker-name">Replit</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=lovable.dev&sz=32" alt="" />
+          <span class="ticker-name">Lovable</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=v0.dev&sz=32" alt="" />
+          <span class="ticker-name">V0</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=bolt.new&sz=32" alt="" />
+          <span class="ticker-name">Bolt</span>
+        </div>
+        <span class="ticker-sep" style="padding-right:28px;">·</span>
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=bubble.io&sz=32" alt="" />
+          <span class="ticker-name">Bubble</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=webflow.com&sz=32" alt="" />
+          <span class="ticker-name">Webflow</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=framer.com&sz=32" alt="" />
+          <span class="ticker-name">Framer</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=supabase.com&sz=32" alt="" />
+          <span class="ticker-name">Supabase</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=firebase.google.com&sz=32" alt="" />
+          <span class="ticker-name">Firebase</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=vercel.com&sz=32" alt="" />
+          <span class="ticker-name">Vercel</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" />
+          <span class="ticker-name">Notion</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=airtable.com&sz=32" alt="" />
+          <span class="ticker-name">Airtable</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="" />
+          <span class="ticker-name">Make</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=cursor.sh&sz=32" alt="" />
+          <span class="ticker-name">Cursor</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=replit.com&sz=32" alt="" />
+          <span class="ticker-name">Replit</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=lovable.dev&sz=32" alt="" />
+          <span class="ticker-name">Lovable</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=v0.dev&sz=32" alt="" />
+          <span class="ticker-name">V0</span>
+        </div>
+        <span class="ticker-sep">·</span>
+        <div class="ticker-item">
+          <img class="ticker-logo" src="https://www.google.com/s2/favicons?domain=bolt.new&sz=32" alt="" />
+          <span class="ticker-name">Bolt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section separator -->
+  <div class="how-sep">
+    <span class="how-sep-label">HOW IT WORKS</span>
+    <span class="how-sep-arrow">↓</span>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 2 — PROBLEM
+  ══════════════════════════════ -->
+  <section id="problem">
+    <div class="problem-inner">
+      <span class="section-label reveal">THE PROBLEM</span>
+      <div class="questions-stack">
+        <div class="question question-q1 reveal" data-delay="0">You have an idea. But what do you actually build it
+          with?</div>
+        <div class="question-tools reveal" data-delay="150" id="tools-tw"></div>
+        <div class="question question-q3 reveal" data-delay="300">You spend 3 days Googling instead of building.</div>
+        <div class="question question-q4 reveal" data-delay="450">Sound familiar?<span class="q4-cursor">▋</span></div>
+      </div>
+      <div class="divider-star reveal">✦</div>
+      <div class="reveal">
+        <h2 class="solution-heading">TARKK <span class="heading-highlight">analyzes your idea.</span></h2>
+        <p class="solution-sub">And returns the exact stack to build it — tools, order, connections, build time, and a
+          weekend plan.</p>
+      </div>
+      <div class="feature-pills reveal" data-delay="100">
+        <span class="pill">⚡ Stack in seconds</span>
+        <span class="pill">🔗 Tool connections mapped</span>
+        <span class="pill">📅 Weekend build plan included</span>
+      </div>
+      <div class="how-steps reveal" data-delay="150">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-title">Describe your idea</div>
+          <div class="step-desc">Type what you want to build in plain English — no technical jargon needed.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-title">TARKK analyzes it</div>
+          <div class="step-desc">Claude AI maps your idea to the optimal no-code and AI tool stack instantly.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-title">Ship this weekend</div>
+          <div class="step-desc">Get your full stack, tool connections, and a day-by-day build plan.</div>
+        </div>
+      </div>
+      <div class="cta-section reveal" data-delay="200">
+        <button class="btn-cta-main" onclick="openChat()">Try TARKK Now — It's Free →</button>
+        <span class="trust-line">No signup. No credit card. Just your idea.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       CHATBOT OVERLAY — FULL SCREEN
+  ══════════════════════════════ -->
+  <div id="chat-overlay">
+    <div class="co-shell">
+
+      <!-- Sidebar -->
+      <div class="co-sidebar" id="co-sidebar">
+        <div class="co-sb-top">
+          <div class="co-sb-logo">▪ TARKK</div>
+          <button class="co-sb-new" onclick="newChat()">
+            <span class="co-sb-new-icon">+</span> New chat
+          </button>
+        </div>
+        <div class="co-sb-divider"></div>
+        <div class="co-sb-history">
+          <div class="co-sb-recents-label">RECENTS</div>
+          <div id="sb-history-list"></div>
+        </div>
+        <div class="co-sb-bottom">
+          <div class="co-sb-avatar">SA</div>
+          <div class="co-sb-user">
+            <div class="co-sb-user-name">Saurabh Ahire</div>
+            <div class="co-sb-user-role">Founding GTM Engineer</div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile sidebar backdrop -->
+      <div class="co-sidebar-overlay" id="co-sidebar-overlay" onclick="toggleSidebar()"></div>
+
+      <!-- Header -->
+      <div class="co-header">
+        <div class="co-hdr-left">
+          <button class="co-mob-toggle" id="co-mob-toggle" onclick="toggleSidebar()">☰</button>
+          <span class="co-logo">▪ TARKK</span>
+          <span class="co-hdr-divider"></span>
+          <span class="co-subtitle">Stack Intelligence Engine</span>
+        </div>
+        <div class="co-hdr-right">
+          <div class="live-wrap">
+            <div class="live-dot"></div>
+          </div>
+          <div class="co-hdr-sep"></div>
+          <button class="btn-close" onclick="closeChat()">✕ Close</button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="chat-msgs" id="chat-msgs">
+        <!-- Welcome state (hidden after first user message) -->
+        <div class="co-welcome" id="co-welcome">
+          <h2 class="co-welcome-h" id="co-greeting">Good morning.</h2>
+          <p class="co-welcome-sub">What are you building today?</p>
+          <!-- Large centered input card -->
+          <div class="co-welcome-card">
+            <textarea class="co-welcome-ta" id="co-welcome-ta" placeholder="Describe your app idea in plain English..."
+              rows="3" oninput="syncWelcomeInput(this)" onkeydown="handleWelcomeKey(event)"></textarea>
+            <div class="co-welcome-card-foot">
+              <button class="co-welcome-send" id="co-welcome-send" onclick="sendFromWelcome()" disabled>SEND →</button>
+            </div>
+          </div>
+          <!-- Suggestion chips -->
+          <div class="co-chips" id="co-chips">
+            <button class="co-chip" data-prompt="SaaS for restaurant inventory tracking"
+              onclick="useChip(this)">Restaurant SaaS</button>
+            <button class="co-chip" data-prompt="AI newsletter with daily summaries" onclick="useChip(this)">AI
+              newsletter</button>
+            <button class="co-chip" data-prompt="Lead gen tool for B2B agencies" onclick="useChip(this)">B2B lead
+              gen</button>
+            <button class="co-chip" data-prompt="Client portal for freelance designers" onclick="useChip(this)">Client
+              portal</button>
+            <button class="co-chip" data-prompt="Booking system for independent tutors" onclick="useChip(this)">Tutor
+              booking</button>
+            <button class="co-chip" data-prompt="Competitor intelligence dashboard" onclick="useChip(this)">Intel
+              dashboard</button>
+            <button class="co-chip" data-prompt="E-commerce store for handmade goods" onclick="useChip(this)">Handmade
+              store</button>
+            <button class="co-chip" data-prompt="Internal wiki for remote teams" onclick="useChip(this)">Team
+              wiki</button>
+          </div>
+        </div>
+        <!-- Hidden timestamp anchor preserved for JS -->
+        <span id="init-time" style="display:none;"></span>
+      </div>
+
+      <!-- Input bar (hidden in welcome state, shown in active state) -->
+      <div class="co-input-bar" id="co-bar" style="display:none;">
+        <div class="co-input-content">
+          <div class="co-input-field">
+            <textarea class="chat-ta" id="chat-ta" placeholder="Describe what you want to build..." rows="1"
+              onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+            <button class="btn-send" id="send-btn" onclick="sendMsg()">SEND →</button>
+          </div>
+          <div class="co-input-note">No signup · No credit card · Powered by Claude API</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">TARKK</div>
+        <div class="f-tagline">Stack intelligence for vibe coders.</div>
+      </div>
+      <div class="f-links">
+        <a href="#problem">How it works</a>
+        <a href="#" onclick="openChat();return false;">Try it</a>
+        <a href="#">About</a>
+      </div>
+      <div class="f-right">
+        <span class="f-built">Built by</span>
+        <span class="f-name">Saurabh Ahire</span>
+        <span class="f-role">Founding GTM Engineer</span>
+        <a href="#" class="f-link">Portfolio →</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TARKK AI. All rights reserved.</span>
+      <span>// vibe-coded with Claude API</span>
+    </div>
+  </footer>
+
+
+  <script>
+    /* ══════════════════════════════════════════════
+       NAV SCROLL
+    ══════════════════════════════════════════════ */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+
+    /* ══════════════════════════════════════════════
+       HERO PARTICLE NETWORK CANVAS
+    ══════════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      const ACCENT = '107,33,232';
+      const NODE_COUNT = 36;
+      const CONNECT_DIST = 135;
+      const TECH_LABELS = ['React', 'Next.js', 'Firebase', 'Tailwind', 'Python',
+        'Supabase', 'Vercel', 'Node.js', 'GPT-4', 'Stripe', 'n8n'];
+      let nodes = [];
+      let animId;
+
+      function resize() {
+        const hero = document.getElementById('hero');
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+      }
+
+      function initNodes() {
+        nodes = [];
+        for (let i = 0; i < NODE_COUNT; i++) {
+          const isAccent = Math.random() < 0.13;
+          const hasLabel = i < TECH_LABELS.length;
+          nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.28,
+            vy: (Math.random() - 0.5) * 0.13,
+            r: isAccent ? 3.5 : (hasLabel ? 2.5 : 1.8),
+            isAccent,
+            label: hasLabel ? TECH_LABELS[i] : null,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update positions (slow leftward drift)
+        nodes.forEach(n => {
+          n.x += n.vx - 0.16;
+          n.y += n.vy;
+          n.phase += 0.014;
+          if (n.x < -100) n.x = canvas.width + 100;
+          if (n.x > canvas.width + 100) n.x = -100;
+          if (n.y < -100) n.y = canvas.height + 100;
+          if (n.y > canvas.height + 100) n.y = -100;
+        });
+
+        // Draw edges
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < CONNECT_DIST) {
+              const pulse = 0.5 + 0.5 * Math.sin(nodes[i].phase);
+              const a = (1 - d / CONNECT_DIST) * 0.18 * pulse;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(${ACCENT},${a})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw nodes + labels
+        nodes.forEach(n => {
+          const pulse = 0.55 + 0.45 * Math.sin(n.phase);
+
+          if (n.isAccent) {
+            // Glow halo
+            const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+            g.addColorStop(0, `rgba(${ACCENT},${0.22 * pulse})`);
+            g.addColorStop(1, `rgba(${ACCENT},0)`);
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+            ctx.fillStyle = g;
+            ctx.fill();
+            // Core
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${ACCENT},${0.85 * pulse})`;
+            ctx.fill();
+          } else {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(107,33,232,${0.12 * pulse})`;
+            ctx.fill();
+          }
+
+          if (n.label) {
+            ctx.font = `10px "Space Mono", monospace`;
+            ctx.fillStyle = `rgba(107,33,232,${0.3 * pulse})`;
+            ctx.fillText(n.label, n.x + n.r + 5, n.y + 3.5);
+          }
+        });
+
+        // Left/right vignette
+        const vg = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        vg.addColorStop(0, 'rgba(250,249,246,0.92)');
+        vg.addColorStop(0.12, 'rgba(250,249,246,0)');
+        vg.addColorStop(0.88, 'rgba(250,249,246,0)');
+        vg.addColorStop(1, 'rgba(250,249,246,0.92)');
+        ctx.fillStyle = vg;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Bottom fade
+        const bg = ctx.createLinearGradient(0, canvas.height - 80, 0, canvas.height);
+        bg.addColorStop(0, 'rgba(250,249,246,0)');
+        bg.addColorStop(1, 'rgba(250,249,246,0.8)');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
+
+        animId = requestAnimationFrame(draw);
+      }
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          cancelAnimationFrame(animId);
+          resize();
+          initNodes();
+          animId = requestAnimationFrame(draw);
+        }, 150);
+      }, { passive: true });
+
+      resize();
+      initNodes();
+      document.fonts.ready.then(() => { animId = requestAnimationFrame(draw); });
+    })();
+
+
+    /* ══════════════════════════════════════════════
+       SCROLL REVEALS
+    ══════════════════════════════════════════════ */
+    const revObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const delay = parseInt(e.target.dataset.delay || '0');
+        setTimeout(() => e.target.classList.add('revealed'), delay);
+        revObserver.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
+
+
+    /* ══════════════════════════════════════════════
+       TYPEWRITER — Problem Q2
+    ══════════════════════════════════════════════ */
+    const twEl = document.getElementById('tools-tw');
+    const twWords = ['Bubble?', 'Webflow?', 'Supabase?', 'Glide?', 'Make?', 'n8n?', 'Zapier?'];
+    let twDone = false;
+    new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !twDone) {
+        twDone = true;
+        twEl.classList.add('revealed');
+        const full = twWords.join('  ·  ');
+        let i = 0;
+        const iv = setInterval(() => {
+          twEl.textContent = full.slice(0, i++);
+          if (i > full.length) clearInterval(iv);
+        }, 80);
+      }
+    }, { threshold: 0.5 }).observe(twEl);
+
+
+    /* ══════════════════════════════════════════════
+       CHATBOT OVERLAY — STATE MACHINE
+    ══════════════════════════════════════════════ */
+    const MISTRAL_API_KEY = 'eBon0Wi0mChBxmyl5uzbyiK9A9sJMOzc';
+    const overlay = document.getElementById('chat-overlay');
+    let chatIsOpen = false;
+    let sampleTimer = null;
+    let chatState = 'welcome';
+    let currentAbort = null;
+    let chatHistory = [];
+    let activeChatId = null;
+
+    /* ── Sidebar history helpers ── */
+    function newChat() {
+      activeChatId = null;
+      setChatState('welcome');
+      const chips = document.querySelectorAll('.co-chip');
+      chips.forEach((chip, i) => {
+        chip.style.opacity = '0'; chip.style.transform = 'translateY(6px)'; chip.style.transition = 'none';
+        setTimeout(() => {
+          chip.style.transition = 'opacity 180ms ease, transform 180ms ease, background 150ms, color 150ms, border-color 150ms';
+          chip.style.opacity = '1'; chip.style.transform = 'translateY(0)';
+        }, 250 + i * 60);
+      });
+      setGreeting(); renderSidebarHistory(); closeSidebarMobile();
+    }
+
+    function getMessagesHtml() {
+      const msgs = document.getElementById('chat-msgs');
+      return Array.from(msgs.querySelectorAll('.msg')).map(el => el.outerHTML).join('');
+    }
+
+    function createHistoryEntry(firstMsg) {
+      const id = Date.now();
+      const title = firstMsg.length > 40 ? firstMsg.slice(0, 40) + '...' : firstMsg;
+      const entry = { id, title, timestamp: now(), html: '' };
+      chatHistory.unshift(entry); activeChatId = id; renderSidebarHistory(); return entry;
+    }
+
+    function saveCurrentChat() {
+      if (!activeChatId) return;
+      const entry = chatHistory.find(c => c.id === activeChatId);
+      if (entry) entry.html = getMessagesHtml();
+      renderSidebarHistory();
+    }
+
+    function loadHistoryEntry(id) {
+      const entry = chatHistory.find(c => c.id === id);
+      if (!entry) return;
+      activeChatId = id;
+      const msgs = document.getElementById('chat-msgs');
+      Array.from(msgs.children).forEach(node => { if (node.id !== 'co-welcome' && node.id !== 'init-time') node.remove(); });
+      if (entry.html) {
+        const tmp = document.createElement('div'); tmp.innerHTML = entry.html;
+        Array.from(tmp.children).forEach(node => msgs.appendChild(node));
+      }
+      setChatState('active'); renderSidebarHistory(); scrollMsgs(); closeSidebarMobile();
+    }
+
+    function renderSidebarHistory() {
+      const list = document.getElementById('sb-history-list');
+      if (!list) return;
+      list.innerHTML = '';
+      chatHistory.forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'co-sb-item' + (entry.id === activeChatId ? ' active' : '');
+        item.dataset.id = entry.id;
+
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'co-sb-item-title';
+        titleSpan.textContent = entry.title;
+        titleSpan.onclick = () => loadHistoryEntry(entry.id);
+
+        const menuBtn = document.createElement('button');
+        menuBtn.className = 'item-menu-btn';
+        menuBtn.textContent = '⋯';
+
+        item.appendChild(titleSpan);
+        item.appendChild(menuBtn);
+        list.appendChild(item);
+      });
+    }
+
+    /* ── Sidebar item dropdown ── */
+    let openDropdownId = null;
+    const dropdownEl = document.createElement('div');
+    dropdownEl.className = 'sb-dropdown';
+    dropdownEl.id = 'sb-dropdown';
+    document.getElementById('co-sidebar').appendChild(dropdownEl);
+
+    document.getElementById('sb-history-list').addEventListener('click', function (e) {
+      const menuBtn = e.target.closest('.item-menu-btn');
+      if (menuBtn) {
+        e.stopPropagation();
+        const id = parseInt(menuBtn.closest('[data-id]').dataset.id);
+        closeAllDropdowns();
+        openItemMenu(menuBtn, id);
+      }
+    });
+
+    function closeAllDropdowns() {
+      dropdownEl.style.display = 'none';
+      openDropdownId = null;
+    }
+
+    function openItemMenu(btn, id) {
+      if (openDropdownId === id) { closeAllDropdowns(); return; }
+      openDropdownId = id;
+
+      dropdownEl.innerHTML = `
+        <div class="sb-dropdown-item" onclick="shareChat(${id})">
+          <span class="sb-dd-icon">↗</span><span>Share</span>
+        </div>
+        <div class="sb-dropdown-item" onclick="renameChat(${id})">
+          <span class="sb-dd-icon">✎</span><span>Rename</span>
+        </div>
+        <div class="sb-dropdown-item sb-dd-delete" onclick="deleteChat(${id})">
+          <span class="sb-dd-icon">✕</span><span>Delete</span>
+        </div>`;
+
+      dropdownEl.style.display = 'block';
+      const rect = btn.getBoundingClientRect();
+      const sidebar = document.getElementById('co-sidebar');
+      const sbRect = sidebar.getBoundingClientRect();
+      const ddWidth = 160;
+      const top = rect.bottom - sbRect.top;
+      let left = rect.right - sbRect.left - ddWidth;
+      if (left < 0) left = 0;
+      dropdownEl.style.top = top + 'px';
+      dropdownEl.style.bottom = '';
+      dropdownEl.style.left = left + 'px';
+    }
+
+    function shareChat(id) {
+      closeAllDropdowns();
+      const url = window.location.href.split('?')[0] + '?chat=' + id;
+      navigator.clipboard.writeText(url).then(() => showToast('Link copied!')).catch(() => showToast('Link copied!'));
+    }
+
+    function renameChat(id) {
+      closeAllDropdowns();
+      const list = document.getElementById('sb-history-list');
+      const item = list && list.querySelector(`[data-id="${id}"]`);
+      if (!item) return;
+      const titleEl = item.querySelector('.co-sb-item-title');
+      if (!titleEl) return;
+      const currentTitle = titleEl.textContent;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = currentTitle;
+      input.className = 'co-sb-rename-input';
+      titleEl.style.display = 'none';
+      item.insertBefore(input, titleEl);
+      input.focus();
+      input.select();
+
+      let saved = false;
+      function save() {
+        if (saved) return; saved = true;
+        const newTitle = input.value.trim() || currentTitle;
+        const entry = chatHistory.find(c => c.id === id);
+        if (entry) entry.title = newTitle;
+        titleEl.textContent = newTitle;
+        titleEl.style.display = '';
+        input.remove();
+      }
+      function cancel() {
+        if (saved) return; saved = true;
+        titleEl.style.display = '';
+        input.remove();
+      }
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); save(); }
+        if (e.key === 'Escape') { e.preventDefault(); cancel(); }
+      });
+      input.addEventListener('blur', save);
+    }
+
+    function deleteChat(id) {
+      closeAllDropdowns();
+      const idx = chatHistory.findIndex(c => c.id === id);
+      if (idx === -1) return;
+      chatHistory.splice(idx, 1);
+      if (activeChatId === id) setChatState('welcome');
+      renderSidebarHistory();
+    }
+
+    function showToast(msg) {
+      const existing = document.getElementById('co-toast');
+      if (existing) existing.remove();
+      const t = document.createElement('div');
+      t.id = 'co-toast';
+      t.className = 'co-toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+      setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2000);
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('co-sidebar');
+      const sbo = document.getElementById('co-sidebar-overlay');
+      if (sidebar) sidebar.classList.toggle('mob-open');
+      if (sbo) sbo.classList.toggle('visible');
+    }
+
+    function closeSidebarMobile() {
+      const sidebar = document.getElementById('co-sidebar');
+      const sbo = document.getElementById('co-sidebar-overlay');
+      if (sidebar) sidebar.classList.remove('mob-open');
+      if (sbo) sbo.classList.remove('visible');
+    }
+
+    /* ── Single function that owns all state transitions ── */
+    function setChatState(state) {
+      chatState = state;
+      const welcome = document.getElementById('co-welcome');
+      const bar = document.getElementById('co-bar');
+      const msgs = document.getElementById('chat-msgs');
+
+      if (state === 'welcome') {
+        activeChatId = null;
+        renderSidebarHistory();
+
+        // Clear message nodes only (keep #co-welcome and #init-time)
+        Array.from(msgs.children).forEach(node => {
+          if (node.id !== 'co-welcome' && node.id !== 'init-time') node.remove();
+        });
+
+        // Reset scroll and padding to CSS defaults
+        msgs.scrollTop = 0;
+        msgs.style.paddingTop = '';
+        msgs.style.paddingBottom = '';
+
+        // Restore welcome element — clear any inline transition/opacity/transform
+        if (welcome) {
+          welcome.style.display = '';
+          welcome.style.opacity = '';
+          welcome.style.transform = '';
+          welcome.style.transition = '';
+          welcome.classList.remove('hiding');
+        }
+
+        // Hide bottom bar
+        if (bar) { bar.style.display = 'none'; bar.style.opacity = ''; bar.style.transition = ''; }
+
+        // Reset both input areas
+        const wta = document.getElementById('co-welcome-ta');
+        if (wta) wta.value = '';
+        const bta = document.getElementById('chat-ta');
+        if (bta) { bta.value = ''; autoResize(bta); }
+        const wsend = document.getElementById('co-welcome-send');
+        if (wsend) wsend.disabled = true;
+
+        // Reset busy flag
+        busy = false;
+        setSend(false);
+
+      } else if (state === 'active') {
+        // Welcome already faded at this point — hard-hide it
+        if (welcome) welcome.style.display = 'none';
+
+        // Show bottom bar with 120ms fade-in
+        if (bar) {
+          bar.style.opacity = '0';
+          bar.style.transition = 'none';
+          bar.style.display = 'flex';
+          requestAnimationFrame(() => {
+            bar.style.transition = 'opacity 120ms ease';
+            bar.style.opacity = '1';
+          });
+        }
+
+        // Chat state padding: 32px top, 150px bottom for fixed bar
+        msgs.style.paddingTop = '32px';
+        msgs.style.paddingBottom = '150px';
+
+        // Focus bottom textarea after bar has appeared
+        const bta = document.getElementById('chat-ta');
+        if (bta) setTimeout(() => bta.focus(), 130);
+      }
+    }
+
+    function openChat() {
+      // Always begin as a completely fresh session
+      setChatState('welcome');
+
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+      chatIsOpen = true;
+      document.body.style.overflow = 'hidden';
+      document.getElementById('init-time').textContent = now();
+
+      // Time-aware greeting
+      setGreeting();
+
+      // Staggered chip entrance animation
+      const chips = document.querySelectorAll('.co-chip');
+      chips.forEach((chip, i) => {
+        chip.style.opacity = '0';
+        chip.style.transform = 'translateY(6px)';
+        chip.style.transition = 'none';
+        setTimeout(() => {
+          chip.style.transition = 'opacity 180ms ease, transform 180ms ease, background 150ms, color 150ms, border-color 150ms';
+          chip.style.opacity = '1';
+          chip.style.transform = 'translateY(0)';
+        }, 250 + i * 60);
+      });
+
+
+      renderSidebarHistory();
+    }
+
+    function closeChat() {
+      // Cancel any in-flight API request
+      if (currentAbort) { currentAbort.abort(); currentAbort = null; }
+
+      overlay.classList.remove('open');
+      clearInterval(sampleTimer); sampleTimer = null;
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        chatIsOpen = false;
+        document.body.style.overflow = '';
+        // Reset to clean welcome state so next open is always fresh
+        setChatState('welcome');
+      }, 350);
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (openDropdownId !== null) { closeAllDropdowns(); return; }
+        if (chatIsOpen) closeChat();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (openDropdownId !== null) {
+        if (!e.target.closest('.item-menu-btn') && !e.target.closest('.sb-dropdown')) {
+          closeAllDropdowns();
+        }
+      }
+    });
+
+    /* Time-aware greeting */
+    function setGreeting() {
+      const h = new Date().getHours();
+      const g = h < 12 ? 'Good morning.' : h < 17 ? 'Good afternoon.' : 'Good evening.';
+      const el = document.getElementById('co-greeting');
+      if (el) el.textContent = g;
+    }
+
+    /* Sync welcome textarea → bottom textarea, toggle send button */
+    function syncWelcomeInput(ta) {
+      const bottomTa = document.getElementById('chat-ta');
+      if (bottomTa) { bottomTa.value = ta.value; autoResize(bottomTa); }
+      const btn = document.getElementById('co-welcome-send');
+      if (btn) btn.disabled = !ta.value.trim();
+    }
+
+    /* Chip click — fill both textareas + focus, no auto-submit */
+    function useChip(el) {
+      const prompt = el.dataset.prompt;
+      const wta = document.getElementById('co-welcome-ta');
+      const bta = document.getElementById('chat-ta');
+      if (wta) { wta.value = prompt; wta.focus(); }
+      if (bta) { bta.value = prompt; autoResize(bta); }
+      const btn = document.getElementById('co-welcome-send');
+      if (btn) btn.disabled = false;
+    }
+
+    /* Enter in welcome textarea sends (Shift+Enter = newline) */
+    function handleWelcomeKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendFromWelcome(); }
+    }
+
+    /* Send from welcome card — owns the welcome→active transition */
+    function sendFromWelcome() {
+      const wta = document.getElementById('co-welcome-ta');
+      if (!wta || !wta.value.trim()) return;
+
+      // Sync value to bottom textarea before anything else
+      const bta = document.getElementById('chat-ta');
+      if (bta) { bta.value = wta.value; autoResize(bta); }
+
+      // 1. Fade welcome out: opacity 1→0, translateY 0→-16px, 180ms ease-in
+      const welcome = document.getElementById('co-welcome');
+      if (welcome) {
+        welcome.style.transition = 'opacity 180ms ease-in, transform 180ms ease-in';
+        welcome.style.opacity = '0';
+        welcome.style.transform = 'translateY(-16px)';
+      }
+
+      // 2+3. After 180ms: switch state (hides welcome, shows bar), then submit
+      setTimeout(() => {
+        setChatState('active');
+        sendMsg();
+      }, 180);
+    }
+
+
+    /* ══════════════════════════════════════════════
+       CHAT — Claude API
+    ══════════════════════════════════════════════ */
+    const SYS = `# TARKK Stack Intelligence Engine
+
+You are TARKK AI — a sharp, opinionated stack intelligence engine built for vibe coders: non-technical builders who ship products using no-code and AI tools instead of writing raw code.
+
+Your job: take a plain-English product idea and return the exact stack to build it — tools, order, connections, timeline, cost, and a concrete weekend plan. You are a senior technical co-founder in a text box.
+
+---
+
+## Persona & Voice
+
+- Opinionated: Never say "you could use X or Y". Pick one. Explain why.
+- Specific: Reference the actual idea, not generic advice.
+- No hedging: Don't say "it depends". Make the call.
+- Concise: Every sentence earns its place. No filler.
+- Honest about difficulty: If it's hard, say so. Don't oversell.
+
+You speak like a founder who has shipped 50+ products on no-code tools — not like a consultant covering their ass.
+
+---
+
+## Tool Knowledge Base
+
+### Frontend / App Builders
+
+**Glide** — Use when: Mobile-first app, data is in Google Sheets or Airtable, users need a clean UI to view/edit records, simple logic. Don't use when: Complex workflows, user-to-user interactions, custom design needed. Free tier: Yes. Best for: Field service apps, internal tools, simple marketplaces, directory apps.
+
+**Bubble** — Use when: Complex SaaS, custom user auth, dashboards with business logic, multi-sided marketplace. Don't use when: Simple data views, landing pages, quick prototypes. Free tier: Yes (Bubble branding, limited capacity). Best for: SaaS MVPs, CRMs, booking platforms, complex workflow tools. Learning curve: Medium-high.
+
+**Webflow** — Use when: Marketing site, landing page, content-heavy site, e-commerce. Don't use when: App with user accounts, dynamic data, complex logic. Free tier: Yes. Best for: Product landing pages, agency sites, blogs, portfolios.
+
+**Framer** — Use when: Design-heavy landing page, portfolio, product site with animations. Don't use when: Functional app, user accounts, database needed. Free tier: Yes. Best for: Startup landing pages, personal portfolios, product showcases. vs Webflow: Framer is faster for beautiful pages. Webflow has more control.
+
+**Softr** — Use when: Client portal, internal tool, member directory on top of Airtable data. Don't use when: Complex logic, non-Airtable data, custom design critical. Free tier: Yes. Best for: Client portals, member directories, internal dashboards.
+
+**Lovable / Bolt / v0** — Use when: Need a UI fast, idea is visual, want to iterate quickly with AI generation. Don't use when: Production-ready app needed immediately, complex backend logic. Best for: Prototypes, demo apps, quick MVPs to validate ideas.
+
+### Databases
+
+**Airtable** — Use when: Team needs to edit data like a spreadsheet, structured records, CMS use case. Don't use when: Real-time data, complex relational queries, large scale. Free tier: Yes (1,000 records per base). Best for: CMS backends, inventory, CRM, content calendars.
+
+**Supabase** — Use when: Need a real database with APIs, user auth included, more technical builder. Don't use when: Non-technical builder, team needs to edit data visually. Free tier: Yes (500MB, 2 projects). Best for: SaaS backends, row-level security, real-time features. vs Airtable: Supabase is real Postgres. More powerful, less friendly for non-devs.
+
+**Notion** — Use when: Content-heavy product, wiki, documentation, team knowledge base. Free tier: Yes. Best for: Internal wikis, content databases, team tools.
+
+**Firebase** — Use when: Real-time data needed (chat, live updates), mobile app backend. Free tier: Yes (Spark plan). Best for: Chat apps, real-time dashboards, mobile app backends.
+
+### Automation
+
+**Make (Integromat)** — Use when: Complex multi-step workflows, need data transformation, best value. Free tier: Yes (1,000 ops/month). vs Zapier: More powerful and cheaper. Default recommendation.
+
+**Zapier** — Use when: Simple 2-step automation, non-technical user, speed over power. Free tier: Yes but very limited (100 tasks/month). When NOT to use: Complex logic, budget-conscious builds.
+
+**n8n** — Use when: Self-hosted needed, unlimited runs important, technical builder. Free tier: Self-host for free.
+
+### Payments
+
+**Stripe** — Use when: Almost always. Industry standard, best documentation. No monthly fee — 2.9% + 30¢/transaction. Best for: SaaS subscriptions, one-time payments, marketplaces.
+
+**Lemon Squeezy** — Use when: Digital products, SaaS with simpler needs, want Merchant of Record (they handle VAT/tax). Best for: Software products, digital downloads, indie SaaS.
+
+**Gumroad** — Use when: Creator selling digital products, courses, templates. Free tier: Free (10% cut). Best for: Creators, digital downloads.
+
+### Email
+
+**Resend** — Use when: Transactional email (welcome emails, notifications, alerts) via API. Free tier: Yes (3,000 emails/month). Best for: App-triggered emails.
+
+**Beehiiv** — Use when: Newsletter product, subscriber management, monetization. Free tier: Yes (up to 2,500 subscribers). Best for: Newsletter-first products.
+
+**ConvertKit (Kit)** — Use when: Creator newsletter, email sequences, audience building. Free tier: Yes (up to 1,000 subscribers). Best for: Creators, coaches, course sellers.
+
+### AI / Intelligence Layer
+
+**Claude API (Anthropic)** — Use when: Reasoning tasks, structured output (JSON), analysis, writing assistance, nuanced understanding. Best for: Stack recommendations, document analysis, complex reasoning. Model: claude-sonnet-4-20250514.
+
+**OpenAI API** — Use when: General purpose AI, broad task coverage, large ecosystem. Best for: Chatbots, content generation, code assistance, image generation.
+
+**Replicate** — Use when: Image generation, video AI, audio AI, specialized ML models. Best for: AI image tools, media processing.
+
+### Auth
+
+**Clerk** — Use when: Need user auth fast, best developer experience, pre-built UI components. Free tier: Yes (10,000 MAU). Default recommendation for auth.
+
+**Supabase Auth** — Use when: Already using Supabase as your database. Free tier: Yes (included with Supabase).
+
+### Forms
+
+**Tally** — Use when: Beautiful forms, free, Notion-like editor. Free tier: Yes (unlimited forms and responses). Default recommendation for forms.
+
+**Typeform** — Use when: Conversational form experience, higher completion rates needed. Free tier: Very limited (10 responses/month).
+
+### Scheduling
+
+**Cal.com** — Use when: Booking system, appointment scheduling, open source preferred. Free tier: Yes. Best for: Service businesses, consultants, coaches.
+
+---
+
+## Common Stack Combos
+
+- Simple SaaS Dashboard: Bubble + Airtable + Stripe + Make + Resend
+- Client Portal: Softr + Airtable + Tally + Stripe + Cal.com
+- AI-Powered Tool: Bubble/Lovable + Supabase + Claude API + Resend + Stripe
+- Newsletter Business: Beehiiv + Tally + Stripe/Lemon Squeezy + Make
+- Marketplace (simple): Glide or Bubble + Airtable + Stripe + Make
+- Internal Tool: Glide or Softr + Airtable + Make + Tally
+- Booking/Scheduling App: Bubble + Supabase + Stripe + Cal.com + Resend
+- E-commerce: Webflow Commerce or Shopify + Make + Klaviyo + Stripe
+
+---
+
+## Output Format
+
+Always return a JSON object matching this exact schema. No markdown. No backticks. No explanation outside the JSON.
+
+{
+  "summary": "2-sentence sharp description of what this product is and who it's for. Be specific to the idea.",
+  "scope": {
+    "mvp": "What the MVP includes — one concrete sentence",
+    "fullProduct": "What the full product looks like — one sentence",
+    "notIncluded": "One thing explicitly out of scope for MVP"
+  },
+  "timeline": {
+    "mvp": "e.g. 3–5 days",
+    "fullProduct": "e.g. 3–4 weeks"
+  },
+  "difficulty": "Beginner | Intermediate | Advanced",
+  "estimatedCost": {
+    "monthly": "e.g. $0–$30/mo",
+    "oneTime": "e.g. $0 to start"
+  },
+  "targetUser": "One sentence: who uses this and why they need it",
+  "tools": [
+    {
+      "name": "Tool name",
+      "role": "Category: Frontend | Database | Automation | Payments | Email | Auth | AI | Forms | Other",
+      "why": "Why THIS tool for THIS specific idea. Reference the idea. 1–2 sentences max.",
+      "freeTier": true
+    }
+  ],
+  "connections": [
+    {
+      "from": "Tool A",
+      "to": "Tool B",
+      "how": "Exactly how they connect — API, native integration, Make zap, webhook, etc."
+    }
+  ],
+  "buildSteps": [
+    "Step 1: [specific action with tool name]",
+    "Step 2: [specific action with tool name]",
+    "Step 3: [specific action with tool name]",
+    "Step 4: [specific action with tool name]",
+    "Step 5: [specific action with tool name]"
+  ],
+  "weekendPlan": {
+    "day1": "Morning: [specific task]. Afternoon: [specific task]. Reference actual tool names.",
+    "day2": "Morning: [specific task]. Afternoon: [specific task]. End with: what you have by Sunday evening."
+  },
+  "firstStepToday": "The single most important thing to do in the next 30 minutes. Concrete. Specific. Not 'do research'."
+}
+
+---
+
+## Rules
+
+1. 4–7 tools maximum. If you need more, you've over-engineered it.
+2. No duplicate roles. One database tool. One automation tool. One frontend.
+3. Free tier truth: Only mark freeTier: true if the free plan is genuinely usable for an MVP — not just a trial.
+4. buildSteps must be ordered — you can't do step 3 before step 2. Think through dependencies.
+5. weekendPlan must name tools — "Set up your Airtable base" not "set up your database".
+6. firstStepToday is always actionable — "Sign up for Glide and connect your Google Sheet" not "research options".
+7. Difficulty rules: Beginner = zero coding experience can ship it in a weekend. Intermediate = requires understanding APIs, webhooks, or logic building. Advanced = requires custom code, complex data models, or significant technical knowledge.
+8. Never recommend raw code tools (React, Node, Python, etc.) unless the user explicitly says they can code.
+9. If the idea is vague, make a reasonable assumption and state it in the summary.
+10. Return ONLY the JSON. No preamble. No explanation. No "Here's your stack:". Just the raw JSON object.
+
+---
+
+## Quality Check Before Responding
+
+- Did I pick ONE tool per role, not multiple options?
+- Did I reference the specific idea in the why fields?
+- Are the buildSteps actually in the right order?
+- Does firstStepToday tell them EXACTLY what to do?
+- Is the weekendPlan realistic for a non-technical builder?
+- Am I being specific or generic? If generic — rewrite it.`;
+
+    let busy = false;
+
+    async function sendMsg() {
+      const ta = document.getElementById('chat-ta');
+      const txt = ta.value.trim();
+      if (!txt || busy) return;
+      addMsg('user', txt);
+      ta.value = ''; autoResize(ta);
+      const tid = addTyping();
+      busy = true; setSend(true);
+      currentAbort = new AbortController();
+      try {
+        const res = await fetch('https://api.mistral.ai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${MISTRAL_API_KEY}`
+          },
+          body: JSON.stringify({ model: 'mistral-large-latest', max_tokens: 2000, messages: [{ role: 'system', content: SYS }, { role: 'user', content: txt }] }),
+          signal: currentAbort.signal,
+        });
+        removeTyping(tid);
+        if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error?.message || `API error ${res.status}`); }
+        const data = await res.json();
+        const raw = data.choices?.[0]?.message?.content || '';
+        const clean = raw.replace(/```json\n?|```/g, '').trim();
+        try { addStack(JSON.parse(clean)); } catch { addMsg('assistant', raw || 'Unexpected response.'); }
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+        removeTyping(tid); addMsg('assistant', '⚠ ' + err.message);
+      }
+      finally { busy = false; setSend(false); currentAbort = null; }
+    }
+
+    function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
+    function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; }
+    function setSend(d) { const b = document.getElementById('send-btn'); b.disabled = d; b.innerHTML = d ? '<span class="spinner-sm"></span>SEND →' : 'SEND →'; }
+    function now() { return new Date().toLocaleTimeString('en', { hour12: false, hour: '2-digit', minute: '2-digit' }); }
+    function scrollMsgs() { const el = document.getElementById('chat-msgs'); el.scrollTop = el.scrollHeight; }
+
+    function addMsg(role, text) {
+      const msgs = document.getElementById('chat-msgs');
+      const d = document.createElement('div'); d.className = `msg ${role}`;
+      d.innerHTML = `<div class="msg-bubble">${esc(text)}</div><span class="msg-time">${now()}</span>`;
+      msgs.appendChild(d); scrollMsgs();
+      if (role === 'user' && !activeChatId) createHistoryEntry(text); else saveCurrentChat();
+    }
+
+    function addStack(data) {
+      const msgs = document.getElementById('chat-msgs');
+      const d = document.createElement('div'); d.className = 'msg assistant';
+      d.innerHTML = `<div class="msg-bubble">${renderStack(data)}</div><span class="msg-time">${now()}</span>`;
+      msgs.appendChild(d); scrollMsgs();
+      saveCurrentChat();
+    }
+
+    function addTyping() {
+      const msgs = document.getElementById('chat-msgs');
+      const id = 'ty-' + Date.now();
+      const d = document.createElement('div'); d.className = 'msg assistant'; d.id = id;
+      d.innerHTML = `<div class="typing-bubble"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div>`;
+      msgs.appendChild(d); scrollMsgs(); return id;
+    }
+
+    function removeTyping(id) { const el = document.getElementById(id); if (el) el.remove(); }
+
+    function renderStack(d) {
+      const s = (v) => esc(String(v ?? ''));
+      let h = `<div style="background:#ffffff;border:1px solid #dedad4;border-radius:12px;padding:0;overflow:hidden;max-width:100%;margin-top:8px;">`;
+
+      // A — SUMMARY HEADER
+      if (d.summary) {
+        h += `<div style="background:#faf9f7;border-bottom:1px solid #ede9e3;padding:16px 20px;">`;
+        h += `<div style="font-family:var(--font-m);font-size:10px;color:#a1a1aa;margin-bottom:6px;letter-spacing:0.06em;">▪ TARKK</div>`;
+        h += `<div style="font-family:var(--font-d);font-size:14px;color:#3d3935;line-height:1.6;">${s(d.summary)}</div>`;
+        h += `</div>`;
+      }
+
+      // B — META STRIP
+      const hasMeta = d.timeline?.mvp || d.difficulty || d.estimatedCost?.monthly || d.timeline?.fullProduct;
+      if (hasMeta) {
+        const diffColor = d.difficulty === 'Beginner' ? '#16a34a' : d.difficulty === 'Advanced' ? '#dc2626' : '#b45309';
+        const stats = [
+          { label: 'MVP TIMELINE', value: d.timeline?.mvp, color: '#1a1a1a' },
+          { label: 'DIFFICULTY', value: d.difficulty, color: diffColor },
+          { label: 'MONTHLY COST', value: d.estimatedCost?.monthly, color: '#1a1a1a' },
+          { label: 'FULL BUILD', value: d.timeline?.fullProduct, color: '#1a1a1a' },
+        ].filter(st => st.value);
+        if (stats.length) {
+          h += `<div style="border-bottom:1px solid #ede9e3;padding:12px 20px;display:flex;gap:0;">`;
+          stats.forEach((st, i) => {
+            const pl = i === 0 ? '0' : '16px';
+            const bl = i > 0 ? 'border-left:1px solid #ede9e3;' : '';
+            h += `<div style="flex:1;min-width:0;padding:0 16px 0 ${pl};${bl}">`;
+            h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">${st.label}</div>`;
+            h += `<div style="font-family:var(--font-d);font-size:13px;font-weight:600;color:${st.color};">${s(st.value)}</div>`;
+            h += `</div>`;
+          });
+          h += `</div>`;
+        }
+      }
+
+      // C — SCOPE
+      if (d.scope) {
+        h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">SCOPE</div>`;
+        if (d.scope.mvp) {
+          h += `<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px;">`;
+          h += `<span style="font-family:var(--font-m);font-size:10px;color:#16a34a;white-space:nowrap;flex-shrink:0;">✓ MVP includes</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:13px;color:#3d3935;">${s(d.scope.mvp)}</span>`;
+          h += `</div>`;
+        }
+        if (d.scope.fullProduct) {
+          h += `<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px;">`;
+          h += `<span style="font-family:var(--font-m);font-size:10px;color:#7c7469;white-space:nowrap;flex-shrink:0;">◎ Full product</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:13px;color:#3d3935;">${s(d.scope.fullProduct)}</span>`;
+          h += `</div>`;
+        }
+        if (d.scope.notIncluded) {
+          h += `<div style="display:flex;gap:10px;align-items:flex-start;">`;
+          h += `<span style="font-family:var(--font-m);font-size:10px;color:#dc2626;white-space:nowrap;flex-shrink:0;">✕ Out of scope</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:13px;color:#3d3935;">${s(d.scope.notIncluded)}</span>`;
+          h += `</div>`;
+        }
+        h += `</div>`;
+      }
+
+      // D — WHO THIS IS FOR
+      if (d.targetUser) {
+        h += `<div style="padding:12px 20px;border-bottom:1px solid #ede9e3;background:#faf9f7;display:flex;gap:10px;align-items:flex-start;">`;
+        h += `<span style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;flex-shrink:0;padding-top:2px;">FOR</span>`;
+        h += `<span style="font-family:var(--font-d);font-size:13px;color:#3d3935;">${s(d.targetUser)}</span>`;
+        h += `</div>`;
+      }
+
+      // E — TOOLS
+      if (d.tools?.length) {
+        h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">TOOLS</div>`;
+        d.tools.forEach((t, i) => {
+          const isLast = i === d.tools.length - 1;
+          const sep = isLast ? '' : 'border-bottom:1px solid #f0ede8;';
+          h += `<div style="padding:10px 0;${sep}display:flex;align-items:flex-start;gap:12px;">`;
+          h += `<span style="font-family:var(--font-m);font-size:11px;color:#5b21b6;min-width:32px;flex-shrink:0;">[${String(i + 1).padStart(2, '0')}]</span>`;
+          h += `<div style="flex:1;min-width:0;">`;
+          h += `<div style="margin-bottom:3px;">`;
+          h += `<span style="font-family:var(--font-d);font-size:13px;font-weight:700;color:#1a1a1a;">${s(t.name)}</span>`;
+          h += `<span style="font-family:var(--font-m);color:#c4bfb8;"> // </span>`;
+          h += `<span style="font-family:var(--font-m);font-size:11px;color:#7c7469;">${s(t.role)}</span>`;
+          h += `</div>`;
+          h += `<div style="font-family:var(--font-d);font-size:12px;color:#6b6560;line-height:1.5;">${s(t.why)}</div>`;
+          h += `</div>`;
+          if (t.freeTier) {
+            h += `<span style="font-family:var(--font-m);font-size:9px;color:#16a34a;border:1px solid #16a34a;border-radius:100px;padding:2px 7px;white-space:nowrap;flex-shrink:0;align-self:flex-start;">FREE</span>`;
+          }
+          h += `</div>`;
+        });
+        h += `</div>`;
+      }
+
+      // F — BUILD STEPS
+      if (d.buildSteps?.length) {
+        h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">BUILD STEPS</div>`;
+        d.buildSteps.forEach((step, i) => {
+          const isLast = i === d.buildSteps.length - 1;
+          const sep = isLast ? '' : 'border-bottom:1px solid #f0ede8;';
+          h += `<div style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;${sep}">`;
+          h += `<div style="width:20px;height:20px;border-radius:50%;background:#f0ede8;border:1px solid #dedad4;display:flex;align-items:center;justify-content:center;flex-shrink:0;">`;
+          h += `<span style="font-family:var(--font-m);font-size:10px;color:#7c7469;">${i + 1}</span>`;
+          h += `</div>`;
+          h += `<span style="font-family:var(--font-d);font-size:13px;color:#3d3935;line-height:1.5;">${s(step)}</span>`;
+          h += `</div>`;
+        });
+        h += `</div>`;
+      }
+
+      // G — CONNECTIONS
+      if (d.connections?.length) {
+        h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">CONNECTIONS</div>`;
+        d.connections.forEach((c, i) => {
+          if (!c.from || !c.to) return;
+          const isLast = i === d.connections.length - 1;
+          const sep = isLast ? '' : 'border-bottom:1px solid #f0ede8;';
+          h += `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;${sep}flex-wrap:wrap;">`;
+          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#f5f3ff;border:1px solid #e9e3ff;border-radius:4px;padding:2px 8px;">${s(c.from)}</span>`;
+          h += `<span style="font-family:var(--font-m);color:#5b21b6;font-size:14px;margin:0 4px;">→</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#f5f3ff;border:1px solid #e9e3ff;border-radius:4px;padding:2px 8px;">${s(c.to)}</span>`;
+          if (c.how) h += `<span style="font-family:var(--font-d);font-size:12px;color:#6b6560;">: ${s(c.how)}</span>`;
+          h += `</div>`;
+        });
+        h += `</div>`;
+      }
+
+      // H — WEEKEND PLAN
+      if (d.weekendPlan?.day1 || d.weekendPlan?.day2) {
+        h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">WEEKEND PLAN</div>`;
+        h += `<div style="display:flex;gap:12px;flex-wrap:wrap;">`;
+        const day1Text = typeof d.weekendPlan.day1 === 'object' && d.weekendPlan.day1
+          ? [d.weekendPlan.day1.morning, d.weekendPlan.day1.afternoon].filter(Boolean).join(' ')
+          : d.weekendPlan.day1;
+        const day2Text = typeof d.weekendPlan.day2 === 'object' && d.weekendPlan.day2
+          ? [d.weekendPlan.day2.morning, d.weekendPlan.day2.afternoon].filter(Boolean).join(' ')
+          : d.weekendPlan.day2;
+        if (day1Text) {
+          h += `<div style="flex:1;min-width:200px;background:#faf9f7;border:1px solid #ede9e3;border-radius:8px;padding:14px 16px;">`;
+          h += `<div style="font-family:var(--font-m);font-size:10px;color:#5b21b6;font-weight:600;margin-bottom:6px;">DAY 1</div>`;
+          h += `<div style="font-family:var(--font-d);font-size:13px;color:#3d3935;line-height:1.6;">${s(day1Text)}</div>`;
+          h += `</div>`;
+        }
+        if (day2Text) {
+          h += `<div style="flex:1;min-width:200px;background:#faf9f7;border:1px solid #ede9e3;border-radius:8px;padding:14px 16px;">`;
+          h += `<div style="font-family:var(--font-m);font-size:10px;color:#5b21b6;font-weight:600;margin-bottom:6px;">DAY 2</div>`;
+          h += `<div style="font-family:var(--font-d);font-size:13px;color:#3d3935;line-height:1.6;">${s(day2Text)}</div>`;
+          h += `</div>`;
+        }
+        h += `</div></div>`;
+      }
+
+      // I — FIRST STEP TODAY
+      if (d.firstStepToday) {
+        h += `<div style="padding:16px 20px;background:#1a1a1a;border-radius:0 0 12px 12px;">`;
+        h += `<div style="font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">START NOW</div>`;
+        h += `<div style="font-family:var(--font-d);font-size:14px;font-weight:600;color:#ffffff;line-height:1.5;"><span style="color:#5b21b6;">→ </span>${s(d.firstStepToday)}</div>`;
+        h += `</div>`;
+      }
+
+      h += `</div>`;
+      return h;
+    }
+
+    function esc(s) {
+      if (typeof s !== 'string') return String(s ?? '');
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    document.getElementById('init-time').textContent = now();
+
+
+    /* ══════════════════════════════════════════════
+       TERMINAL ANIMATION
+    ══════════════════════════════════════════════ */
+    (function () {
+      const MONO = '"Space Mono", monospace';
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      const M = isMobile ? (1 / 0.8) : 1; // 0.8× speed on mobile = 1.25× longer delays
+
+      const EXAMPLES = [
+        {
+          cmd: '$ analyze "SaaS for gym owners"',
+          status: '// stack identified · 5 tools · 2 day build ✓',
+          badges: [
+            { text: '⏱ 2 days', cls: 'amber' },
+            { text: '◈ Beginner', cls: 'green' },
+            { text: '$ $0–$40/mo', cls: 'grey' },
+          ],
+          tools: [
+            ['01', 'Glide', '// frontend'],
+            ['02', 'Airtable', '// database'],
+            ['03', 'Stripe', '// payments'],
+            ['04', 'Make', '// automation'],
+            ['05', 'Claude API', '// ai layer'],
+          ],
+          conns: [
+            { from: 'Airtable', to: 'Glide', desc: ': member data syncs' },
+            { from: 'Stripe', to: 'Make', desc: ': payment webhooks' },
+            { from: 'Claude API', to: 'Glide', desc: ': AI recommendations' },
+          ],
+        },
+        {
+          cmd: '$ analyze "AI newsletter tool"',
+          status: '// stack identified · 5 tools · 3 day build ✓',
+          badges: [
+            { text: '⏱ 3 days', cls: 'amber' },
+            { text: '◈ Beginner', cls: 'green' },
+            { text: '$ $20–$60/mo', cls: 'grey' },
+          ],
+          tools: [
+            ['01', 'Beehiiv', '// publishing'],
+            ['02', 'Make', '// automation'],
+            ['03', 'OpenAI', '// ai layer'],
+            ['04', 'Notion', '// content db'],
+            ['05', 'Resend', '// email'],
+          ],
+          conns: [
+            { from: 'Make', to: 'Beehiiv', desc: ': publish newsletter' },
+            { from: 'OpenAI', to: 'Make', desc: ': generate content' },
+            { from: 'Notion', to: 'Make', desc: ': source articles' },
+          ],
+        },
+        {
+          cmd: '$ analyze "freelancer client portal"',
+          status: '// stack identified · 5 tools · 3 day build ✓',
+          badges: [
+            { text: '⏱ 3 days', cls: 'amber' },
+            { text: '◈ Intermediate', cls: 'green' },
+            { text: '$ $30–$80/mo', cls: 'grey' },
+          ],
+          tools: [
+            ['01', 'Softr', '// frontend'],
+            ['02', 'Airtable', '// database'],
+            ['03', 'Stripe', '// payments'],
+            ['04', 'Notion', '// docs'],
+            ['05', 'Tally', '// forms'],
+          ],
+          conns: [
+            { from: 'Airtable', to: 'Softr', desc: ': client data' },
+            { from: 'Tally', to: 'Airtable', desc: ': form submissions' },
+            { from: 'Stripe', to: 'Softr', desc: ': payment status' },
+          ],
+        },
+      ];
+
+      const BADGE_STYLE = {
+        amber: 'color:#fbbf24;border:1px solid rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);',
+        green: 'color:#4ade80;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.08);',
+        grey: 'color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);',
+      };
+
+      /* helpers */
+      function wait(ms) {
+        return new Promise(r => setTimeout(r, Math.round(ms * M)));
+      }
+      function rAF() {
+        return new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      }
+      function mk(tag, css, text) {
+        const e = document.createElement(tag);
+        if (css) e.style.cssText = css;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      }
+      async function fadeIn(el, dur = 150) {
+        el.style.opacity = '0';
+        el.style.transition = `opacity ${dur}ms ease`;
+        await rAF();
+        el.style.opacity = '1';
+        await wait(dur);
+      }
+
+      /* cursor lives for the lifetime of the animation */
+      const cursor = mk('span', 'color:#a78bfa;', '▋');
+
+      function startBlink(interval = 600) {
+        let active = true;
+        const half = Math.round(interval / 2);
+        let phase = true;
+        const tick = () => {
+          if (!active) { cursor.style.opacity = '1'; return; }
+          cursor.style.opacity = phase ? '1' : '0';
+          phase = !phase;
+          setTimeout(tick, half);
+        };
+        tick();
+        return () => { active = false; };
+      }
+
+      async function blinkN(n, interval = 600) {
+        const half = Math.round(interval / 2);
+        for (let i = 0; i < n; i++) {
+          cursor.style.opacity = '0';
+          await new Promise(r => setTimeout(r, half));
+          cursor.style.opacity = '1';
+          await new Promise(r => setTimeout(r, half));
+        }
+      }
+
+      /* main sequence */
+      async function runExample(body, data) {
+
+        /* STATE 0 — clear + blinking cursor */
+        body.innerHTML = '';
+        cursor.style.opacity = '1';
+        body.appendChild(cursor);
+        const stopBlink0 = startBlink();
+        await wait(400);
+        stopBlink0();
+        cursor.style.opacity = '1';
+
+        /* STATE 1 — typewriter command */
+        const cmdLine = mk('div',
+          `font-family:${MONO};font-size:14px;display:flex;gap:0;margin-bottom:16px;align-items:baseline;`);
+        const cmdText = mk('span', 'color:#a78bfa;');
+        cmdLine.appendChild(cmdText);
+        cmdLine.appendChild(cursor);
+        body.appendChild(cmdLine);
+
+        for (let i = 0; i < data.cmd.length; i++) {
+          cmdText.textContent = data.cmd.slice(0, i + 1);
+          await wait(35);
+        }
+        await blinkN(3);          // blink 3× after typing
+        await wait(300);
+        cmdLine.removeChild(cursor); // detach cursor from cmd line
+
+        /* STATE 2 — processing → success */
+        const procLine = mk('div',
+          `font-family:${MONO};font-size:12px;color:#52525b;margin-bottom:12px;`,
+          '// processing...');
+        body.appendChild(procLine);
+        await fadeIn(procLine, 180);
+        await wait(180);
+
+        procLine.style.transition = 'opacity 120ms ease';
+        procLine.style.opacity = '0';
+        await wait(130);
+        procLine.style.color = '#4ade80';
+        procLine.textContent = data.status;
+        procLine.style.opacity = '0';
+        await rAF();
+        procLine.style.transition = 'opacity 180ms ease';
+        procLine.style.opacity = '1';
+        await wait(300);
+
+        /* STATE 3 — badge pills */
+        const badgeRow = mk('div',
+          'display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;');
+        data.badges.forEach(b => {
+          const pill = mk('span',
+            `font-family:${MONO};font-size:11px;padding:3px 10px;border-radius:4px;` +
+            `${BADGE_STYLE[b.cls]}opacity:0;transform:translateX(-10px);` +
+            `transition:opacity 200ms ease,transform 200ms ease;`,
+            b.text);
+          badgeRow.appendChild(pill);
+        });
+        body.appendChild(badgeRow);
+        await rAF();
+        badgeRow.querySelectorAll('span').forEach(p => {
+          p.style.opacity = '1';
+          p.style.transform = 'translateX(0)';
+        });
+        await wait(200 + 200); // slide-in duration + hold
+
+        /* STATE 4 — TOOLS header */
+        const toolsHdr = mk('div',
+          `font-family:${MONO};font-size:10px;color:#6366f1;letter-spacing:0.14em;` +
+          `text-transform:uppercase;margin-bottom:8px;`,
+          '■ TOOLS');
+        body.appendChild(toolsHdr);
+        await fadeIn(toolsHdr, 150);
+        await wait(100);
+
+        /* STATE 5 — tool lines one by one */
+        for (const [num, name, role] of data.tools) {
+          const line = mk('div',
+            `font-family:${MONO};font-size:13px;padding:3px 0;display:flex;gap:8px;` +
+            `opacity:0;transform:translateY(4px);transition:opacity 150ms ease,transform 150ms ease;`);
+          line.appendChild(mk('span',
+            'color:#a78bfa;opacity:0.7;flex-shrink:0;min-width:34px;', `[${num}]`));
+          line.appendChild(mk('span',
+            'color:#ffffff;font-weight:600;min-width:88px;display:inline-block;', name));
+          line.appendChild(mk('span', 'color:#6b7280;', role));
+          body.appendChild(line);
+          await rAF();
+          line.style.opacity = '1';
+          line.style.transform = 'translateY(0)';
+          await wait(150);
+        }
+        await wait(200);
+
+        /* STATE 6 — CONNECTIONS header */
+        const connHdr = mk('div',
+          `font-family:${MONO};font-size:10px;color:#6366f1;letter-spacing:0.14em;` +
+          `text-transform:uppercase;margin-top:14px;margin-bottom:8px;`,
+          '→ CONNECTIONS');
+        body.appendChild(connHdr);
+        await fadeIn(connHdr, 150);
+        await wait(100);
+
+        /* STATE 7 — connection lines one by one */
+        for (const c of data.conns) {
+          const line = mk('div',
+            `font-family:${MONO};font-size:12px;padding:2px 0;display:flex;` +
+            `gap:5px;flex-wrap:wrap;align-items:baseline;` +
+            `opacity:0;transition:opacity 150ms ease;`);
+          line.appendChild(mk('span', 'color:#a78bfa;flex-shrink:0;', '$'));
+          line.appendChild(mk('span', 'color:#e5e7eb;flex-shrink:0;', c.from));
+          line.appendChild(mk('span', 'color:#6366f1;flex-shrink:0;', '→'));
+          line.appendChild(mk('span', 'color:#e5e7eb;flex-shrink:0;', c.to));
+          line.appendChild(mk('span', 'color:#6b7280;', c.desc));
+          body.appendChild(line);
+          await rAF();
+          line.style.opacity = '1';
+          await wait(120);
+        }
+
+        /* STATE 8 — cursor returns, blinks 4× */
+        const cursorWrap = mk('div', 'margin-top:10px;');
+        cursor.style.opacity = '1';
+        cursorWrap.appendChild(cursor);
+        body.appendChild(cursorWrap);
+        await wait(80);
+        await blinkN(4);
+        await wait(1200);
+
+        /* STATE 9 — fade out everything */
+        body.style.transition = 'opacity 400ms ease';
+        body.style.opacity = '0';
+        await wait(400);
+        body.style.transition = '';
+        body.style.opacity = '1';
+        await wait(300);
+      }
+
+      /* loop runner */
+      async function loop() {
+        const body = document.getElementById('term-body');
+        if (!body) return;
+        let idx = 0;
+        while (true) {
+          await runExample(body, EXAMPLES[idx]);
+          idx = (idx + 1) % EXAMPLES.length;
+        }
+      }
+
+      loop();
+    })();
+
+  </script>
+
+</body>
+
+</html>
