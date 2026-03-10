@@ -3322,7 +3322,21 @@ Always return a JSON object matching this exact schema. No markdown. No backtick
 - Are the buildSteps actually in the right order?
 - Does firstStepToday tell them EXACTLY what to do?
 - Is the weekendPlan realistic for a non-technical builder?
-- Am I being specific or generic? If generic — rewrite it.`;
+- Am I being specific or generic? If generic — rewrite it.
+
+---
+
+## Response Mode
+
+You operate in two modes:
+
+**STACK MODE** — triggered when the user describes a product, app, SaaS, tool, or idea they want to build.
+Return ONLY the raw JSON object. No preamble. No explanation.
+
+**CHAT MODE** — triggered when the user asks a follow-up question, asks about a specific tool, asks "what is X", "how does X work", "why did you pick X", "compare X vs Y", or anything conversational.
+Return plain conversational text. No JSON. No card format. Just answer the question directly and concisely like a knowledgeable co-founder would in a chat.
+
+Never return JSON for a conversational question. Never return plain text for a stack request.`;
 
     let busy = false;
 
