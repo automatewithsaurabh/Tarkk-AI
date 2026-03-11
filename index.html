@@ -2729,7 +2729,6 @@
     /* ══════════════════════════════════════════════
        CHATBOT OVERLAY — STATE MACHINE
     ══════════════════════════════════════════════ */
-    const MISTRAL_API_KEY = 'eBon0Wi0mChBxmyl5uzbyiK9A9sJMOzc';
     const overlay = document.getElementById('chat-overlay');
     let chatIsOpen = false;
     let sampleTimer = null;
@@ -3341,11 +3340,10 @@ Never return JSON for a conversational question. Never return plain text for a s
       busy = true; setSend(true);
       currentAbort = new AbortController();
       try {
-        const res = await fetch('https://api.mistral.ai/v1/chat/completions', {
+        const res = await fetch('https://tarkk-proxy.saurabh-ahire93.workers.dev', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${MISTRAL_API_KEY}`
           },
           body: JSON.stringify({ model: 'mistral-large-latest', max_tokens: 2000, messages: [{ role: 'system', content: SYS }, { role: 'user', content: txt }] }),
           signal: currentAbort.signal,
