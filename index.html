@@ -9,8 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <style>
     /* ── TOKENS ── */
@@ -21,7 +22,7 @@
       --border-dark: #18181b;
       --accent: #6B21E8;
       --accent-2: #7c3aed;
-      --accent-light: #f5f3ff;
+      --accent-light: #fef3e8;
       --text: #09090b;
       --text-mid: #52525b;
       --text-muted: #a1a1aa;
@@ -698,14 +699,14 @@
     .question-q4 {
       font-size: 52px;
       font-weight: 800;
-      color: #5b21b6;
+      color: #d4823a;
       line-height: 1.05;
       margin-bottom: 64px;
     }
 
     .q4-cursor {
       display: inline;
-      color: #5b21b6;
+      color: #d4823a;
       animation: blink-q4 0.7s step-end infinite;
     }
 
@@ -728,7 +729,7 @@
       justify-content: center;
       margin: 56px 0;
       font-size: 18px;
-      color: #5b21b6;
+      color: #d4823a;
     }
 
     .divider-star::before,
@@ -750,7 +751,7 @@
     }
 
     .heading-highlight {
-      background: #f5f3ff;
+      background: #fef3e8;
       border-radius: 4px;
       padding: 2px 8px;
     }
@@ -787,9 +788,9 @@
     }
 
     .pill:hover {
-      border-color: #5b21b6;
-      color: #5b21b6;
-      background: #f5f3ff;
+      border-color: #d4823a;
+      color: #d4823a;
+      background: #fef3e8;
     }
 
     .cta-section {
@@ -804,7 +805,7 @@
       font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      background: #5b21b6;
+      background: #d4823a;
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -817,9 +818,9 @@
     }
 
     .btn-cta-main:hover {
-      background: #4c1d95;
+      background: #b8682e;
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(91, 33, 182, 0.28);
+      box-shadow: 0 8px 28px rgba(212, 130, 58, 0.28);
     }
 
     .trust-line {
@@ -847,12 +848,12 @@
     }
 
     .how-step:hover {
-      border-color: #5b21b6;
-      box-shadow: 0 4px 24px rgba(91, 33, 182, 0.10);
+      border-color: #d4823a;
+      box-shadow: 0 4px 24px rgba(212, 130, 58, 0.10);
     }
 
     .how-step:hover .step-num {
-      color: #c4b5fd;
+      color: #fbbf85;
     }
 
     .step-num {
@@ -900,7 +901,7 @@
       inset: 0;
       z-index: 1000;
       display: none;
-      background: #f0ede8;
+      background: #FAF9F7;
       opacity: 0;
       transition: opacity 150ms ease;
       flex-direction: column;
@@ -934,8 +935,8 @@
       right: 0;
       z-index: 20;
       height: 56px;
-      background: #f0ede8;
-      border-bottom: 1px solid #e0ddd8;
+      background: #FAF9F7;
+      border-bottom: 1px solid #ede9e3;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1100,7 +1101,7 @@
     }
 
     .api-input:focus {
-      border-color: #5b21b6;
+      border-color: #d4823a;
     }
 
     .api-save {
@@ -1131,7 +1132,7 @@
       flex: 1;
       overflow-y: auto;
       padding: 40px 24px 150px;
-      background: #f0ede8;
+      background: #FAF9F7;
       margin-top: 56px;
       margin-left: 260px;
       display: flex;
@@ -1212,19 +1213,23 @@
     }
 
     .co-welcome-send {
-      font-family: var(--font-m);
-      font-size: 12px;
-      background: #5b21b6;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #d4823a;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      transition: background 0.15s, opacity 0.15s;
+      transition: background 0.15s, opacity 0.15s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(212, 130, 58, 0.35);
     }
 
     .co-welcome-send:hover:not(:disabled) {
-      background: #4c1d95;
+      background: #b8682e;
+      transform: scale(1.05);
     }
 
     .co-welcome-send:disabled {
@@ -1280,12 +1285,7 @@
     }
 
     .msg.assistant::before {
-      content: "▪ TARKK";
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: #9c9589;
-      margin-bottom: 6px;
-      display: block;
+      display: none;
     }
 
     .msg-bubble {
@@ -1296,8 +1296,8 @@
     }
 
     .msg.user .msg-bubble {
-      background: #1a1a1a;
-      color: #ffffff;
+      background: #ECEAE4;
+      color: #2d2a26;
       border-radius: 16px 16px 4px 16px;
       padding: 12px 18px;
       max-width: 70%;
@@ -1330,7 +1330,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #9c9589;
+      background: #d4823a;
       animation: tdot-anim 1.4s infinite;
     }
 
@@ -1423,7 +1423,7 @@
     .resp-step {
       font-family: var(--font-m);
       font-size: 10px;
-      color: #5b21b6;
+      color: #d4823a;
       flex-shrink: 0;
       padding-top: 2px;
     }
@@ -1438,7 +1438,7 @@
     .resp-trole {
       font-family: var(--font-m);
       font-size: 11px;
-      color: #5b21b6;
+      color: #d4823a;
       font-weight: 400;
     }
 
@@ -1463,7 +1463,7 @@
       color: #52525b;
       line-height: 1.7;
       white-space: pre-wrap;
-      border-left: 3px solid #5b21b6;
+      border-left: 3px solid #d4823a;
       padding: 14px 16px;
       background: #fafafa;
       border-radius: 0 6px 6px 0;
@@ -1514,12 +1514,12 @@
     }
 
     .co-sb-new:hover {
-      border-color: #5b21b6;
-      background: #f5f3ff;
+      border-color: #d4823a;
+      background: #fef3e8;
     }
 
     .co-sb-new-icon {
-      color: #5b21b6;
+      color: #d4823a;
       font-size: 16px;
     }
 
@@ -1655,7 +1655,7 @@
       font-size: 12px;
       color: #3d3935;
       background: white;
-      border: 1px solid #5b21b6;
+      border: 1px solid #d4823a;
       border-radius: 4px;
       padding: 2px 6px;
       outline: none;
@@ -1696,7 +1696,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: #5b21b6;
+      background: #d4823a;
       color: #fff;
       font-family: var(--font-m);
       font-size: 11px;
@@ -1754,8 +1754,8 @@
       left: 260px;
       right: 0;
       z-index: 20;
-      background: #f0ede8;
-      border-top: 1px solid #e0ddd8;
+      background: #FAF9F7;
+      border-top: none;
       padding: 16px 24px 20px;
     }
 
@@ -1766,27 +1766,28 @@
     }
 
     .co-input-field {
-      border: 1px solid #ddd9d3;
-      border-radius: 14px;
-      padding: 14px 16px 12px 18px;
+      border: 1px solid rgba(212, 130, 58, 0.2);
+      border-radius: 20px;
+      padding: 4px 4px 4px 4px;
       min-height: 56px;
       background: #ffffff;
       display: flex;
-      align-items: flex-end;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
       transition: border-color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 24px rgba(212, 130, 58, 0.06);
     }
 
     .co-input-field:focus-within {
-      border-color: #b8b0a8;
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+      border-color: rgba(212, 130, 58, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 130, 58, 0.1);
     }
 
     .chat-ta {
       flex: 1;
       width: 100%;
       min-width: 0;
-      font-family: var(--font-d);
+      font-family: 'Inter', var(--font-d);
       font-size: 15px;
       color: #09090b;
       background: transparent;
@@ -1794,9 +1795,9 @@
       outline: none;
       resize: none;
       line-height: 1.6;
-      min-height: 52px;
+      min-height: 44px;
       max-height: 160px;
-      padding: 16px 18px;
+      padding: 12px 16px;
     }
 
     .chat-ta::placeholder {
@@ -1804,28 +1805,35 @@
     }
 
     .btn-send {
-      font-family: var(--font-m);
-      font-size: 12px;
-      background: #5b21b6;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #d4823a;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 8px 16px;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
       cursor: pointer;
-      transition: background 0.15s;
-      align-self: flex-end;
-      margin-bottom: 2px;
+      transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(212, 130, 58, 0.4);
+      margin-right: 4px;
     }
 
     .btn-send:hover:not(:disabled) {
-      background: #4c1d95;
+      transform: scale(1.05);
+      background: #b8682e;
+    }
+
+    .btn-send:active:not(:disabled) {
+      transform: scale(0.95);
     }
 
     .btn-send:disabled {
       opacity: 0.4;
       cursor: not-allowed;
+      transform: none;
     }
 
     .co-input-note {
@@ -2424,7 +2432,7 @@
       <!-- Sidebar -->
       <div class="co-sidebar" id="co-sidebar">
         <div class="co-sb-top">
-          <div class="co-sb-logo">▪ TARKK</div>
+          <div class="co-sb-logo"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#d4823a;margin-right:6px;vertical-align:middle;"></span>TARKK</div>
           <button class="co-sb-new" onclick="newChat()">
             <span class="co-sb-new-icon">+</span> New chat
           </button>
@@ -2449,7 +2457,7 @@
       <div class="co-header">
         <div class="co-hdr-left">
           <button class="co-mob-toggle" id="co-mob-toggle" onclick="toggleSidebar()">☰</button>
-          <span class="co-logo">▪ TARKK</span>
+          <span class="co-logo"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#d4823a;margin-right:5px;vertical-align:middle;"></span>TARKK</span>
           <span class="co-hdr-divider"></span>
           <span class="co-subtitle">Stack Intelligence Engine</span>
         </div>
@@ -2473,7 +2481,7 @@
             <textarea class="co-welcome-ta" id="co-welcome-ta" placeholder="Describe your app idea in plain English..."
               rows="3" oninput="syncWelcomeInput(this)" onkeydown="handleWelcomeKey(event)"></textarea>
             <div class="co-welcome-card-foot">
-              <button class="co-welcome-send" id="co-welcome-send" onclick="sendFromWelcome()" disabled>SEND →</button>
+              <button class="co-welcome-send" id="co-welcome-send" onclick="sendFromWelcome()" disabled><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;">arrow_upward</span></button>
             </div>
           </div>
           <!-- Suggestion chips -->
@@ -2506,9 +2514,9 @@
           <div class="co-input-field">
             <textarea class="chat-ta" id="chat-ta" placeholder="Describe what you want to build..." rows="1"
               onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-            <button class="btn-send" id="send-btn" onclick="sendMsg()">SEND →</button>
+            <button class="btn-send" id="send-btn" onclick="sendMsg()"><span class="material-symbols-outlined" style="font-size:20px;font-weight:700;">arrow_upward</span></button>
           </div>
-          <div class="co-input-note">No signup · No credit card · Powered by Claude API</div>
+          <div class="co-input-note">TARKK uses AI to suggest professional stacks. Verify compatibility before starting development.</div>
         </div>
       </div>
 
@@ -3363,14 +3371,18 @@ Never return JSON for a conversational question. Never return plain text for a s
 
     function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
     function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; }
-    function setSend(d) { const b = document.getElementById('send-btn'); b.disabled = d; b.innerHTML = d ? '<span class="spinner-sm"></span>SEND →' : 'SEND →'; }
+    function setSend(d) { const b = document.getElementById('send-btn'); b.disabled = d; b.innerHTML = d ? '<span class="spinner-sm"></span>' : '<span class="material-symbols-outlined" style="font-size:20px;font-weight:700;">arrow_upward</span>'; }
     function now() { return new Date().toLocaleTimeString('en', { hour12: false, hour: '2-digit', minute: '2-digit' }); }
     function scrollMsgs() { const el = document.getElementById('chat-msgs'); el.scrollTop = el.scrollHeight; }
 
     function addMsg(role, text) {
       const msgs = document.getElementById('chat-msgs');
       const d = document.createElement('div'); d.className = `msg ${role}`;
-      d.innerHTML = `<div class="msg-bubble">${esc(text)}</div><span class="msg-time">${now()}</span>`;
+      if (role === 'assistant') {
+        d.innerHTML = `<div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:32px;height:32px;border-radius:8px;background:rgba(212,130,58,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#d4823a;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;">T</span></div><div style="flex:1;min-width:0;"><div class="msg-bubble">${esc(text)}</div><span class="msg-time">${now()}</span></div></div>`;
+      } else {
+        d.innerHTML = `<div class="msg-bubble">${esc(text)}</div><span class="msg-time">${now()}</span>`;
+      }
       msgs.appendChild(d); scrollMsgs();
       if (role === 'user' && !activeChatId) createHistoryEntry(text); else saveCurrentChat();
     }
@@ -3378,7 +3390,7 @@ Never return JSON for a conversational question. Never return plain text for a s
     function addStack(data) {
       const msgs = document.getElementById('chat-msgs');
       const d = document.createElement('div'); d.className = 'msg assistant';
-      d.innerHTML = `<div class="msg-bubble">${renderStack(data)}</div><span class="msg-time">${now()}</span>`;
+      d.innerHTML = `<div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:32px;height:32px;border-radius:8px;background:rgba(212,130,58,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#d4823a;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;">T</span></div><div style="flex:1;min-width:0;"><div class="msg-bubble">${renderStack(data)}</div><span class="msg-time">${now()}</span></div></div>`;
       msgs.appendChild(d); scrollMsgs();
       saveCurrentChat();
     }
@@ -3387,7 +3399,7 @@ Never return JSON for a conversational question. Never return plain text for a s
       const msgs = document.getElementById('chat-msgs');
       const id = 'ty-' + Date.now();
       const d = document.createElement('div'); d.className = 'msg assistant'; d.id = id;
-      d.innerHTML = `<div class="typing-bubble"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div>`;
+      d.innerHTML = `<div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:32px;height:32px;border-radius:8px;background:rgba(212,130,58,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#d4823a;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;">T</span></div><div class="typing-bubble"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div></div>`;
       msgs.appendChild(d); scrollMsgs(); return id;
     }
 
@@ -3462,28 +3474,44 @@ Never return JSON for a conversational question. Never return plain text for a s
         h += `</div>`;
       }
 
-      // E — TOOLS
+      // E — TOOLS (2-col card grid)
       if (d.tools?.length) {
         h += `<div style="padding:16px 20px;border-bottom:1px solid #ede9e3;">`;
-        h += `<div style="font-family:var(--font-m);font-size:9px;color:#a1a1aa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">TOOLS</div>`;
-        d.tools.forEach((t, i) => {
-          const isLast = i === d.tools.length - 1;
-          const sep = isLast ? '' : 'border-bottom:1px solid #f0ede8;';
-          h += `<div style="padding:10px 0;${sep}display:flex;align-items:flex-start;gap:12px;">`;
-          h += `<span style="font-family:var(--font-m);font-size:11px;color:#5b21b6;min-width:32px;flex-shrink:0;">[${String(i + 1).padStart(2, '0')}]</span>`;
-          h += `<div style="flex:1;min-width:0;">`;
-          h += `<div style="margin-bottom:3px;">`;
-          h += `<span style="font-family:var(--font-d);font-size:13px;font-weight:700;color:#1a1a1a;">${s(t.name)}</span>`;
-          h += `<span style="font-family:var(--font-m);color:#c4bfb8;"> // </span>`;
-          h += `<span style="font-family:var(--font-m);font-size:11px;color:#7c7469;">${s(t.role)}</span>`;
+        h += `<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">`;
+        d.tools.forEach((t) => {
+          const domain = t.name.toLowerCase().replace(/\s+/g, '') + '.com';
+          const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+          const diffLevel = t.difficulty || (t.freeTier ? 'Easy' : '');
+          const diffStyle = diffLevel === 'Easy' ? 'background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;' : diffLevel === 'Hard' || diffLevel === 'Advanced' ? 'background:#fff1f2;color:#dc2626;border:1px solid #fecdd3;' : 'background:#fffbeb;color:#b45309;border:1px solid #fde68a;';
+          h += `<div style="padding:14px;background:#ffffff;border:1px solid rgba(212,130,58,0.12);border-radius:12px;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(212,130,58,0.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(212,130,58,0.12)';this.style.transform='translateY(0)'">`;
+          h += `<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">`;
+          h += `<div style="width:36px;height:36px;border-radius:8px;background:#f8f7f6;border:1px solid #ede9e3;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="${faviconUrl}" style="width:20px;height:20px;" onerror="this.style.display='none'"/></div>`;
           h += `</div>`;
-          h += `<div style="font-family:var(--font-d);font-size:12px;color:#6b6560;line-height:1.5;">${s(t.why)}</div>`;
+          h += `<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">`;
+          h += `<span style="font-family:'Inter',var(--font-d);font-size:13px;font-weight:700;color:#1a1a1a;">${s(t.name)}</span>`;
+          h += `<span style="font-family:'Inter',var(--font-d);font-size:10px;background:#f3f3f3;color:#6b6560;padding:1px 6px;border-radius:4px;">${s(t.role)}</span>`;
           h += `</div>`;
-          if (t.freeTier) {
-            h += `<span style="font-family:var(--font-m);font-size:9px;color:#16a34a;border:1px solid #16a34a;border-radius:100px;padding:2px 7px;white-space:nowrap;flex-shrink:0;align-self:flex-start;">FREE</span>`;
+          h += `<p style="font-family:'Inter',var(--font-d);font-size:12px;color:#7c7469;line-height:1.5;margin-bottom:8px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${s(t.why)}</p>`;
+          if (t.freeTier || diffLevel) {
+            h += `<div style="display:flex;gap:6px;flex-wrap:wrap;">`;
+            if (t.freeTier) h += `<span style="font-family:'Inter',var(--font-d);font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;">Free tier</span>`;
+            if (diffLevel) h += `<span style="font-family:'Inter',var(--font-d);font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;${diffStyle}">${s(diffLevel)}</span>`;
+            h += `</div>`;
           }
           h += `</div>`;
         });
+        h += `</div></div>`;
+      }
+
+      // E2 — WHY THIS STACK
+      if (d.whyThisStack || (d.tools?.length && d.summary)) {
+        const whyText = d.whyThisStack || d.summary;
+        h += `<div style="padding:14px 20px;border-bottom:1px solid #ede9e3;background:rgba(212,130,58,0.04);">`;
+        h += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">`;
+        h += `<span style="font-family:'Inter',var(--font-d);font-size:16px;color:#d4823a;">ℹ</span>`;
+        h += `<span style="font-family:'Inter',var(--font-d);font-size:12px;font-weight:700;color:#2d2a26;">Why this stack?</span>`;
+        h += `</div>`;
+        h += `<p style="font-family:'Inter',var(--font-d);font-size:13px;color:#6b6560;line-height:1.7;margin:0;">${s(whyText)}</p>`;
         h += `</div>`;
       }
 
@@ -3513,9 +3541,9 @@ Never return JSON for a conversational question. Never return plain text for a s
           const isLast = i === d.connections.length - 1;
           const sep = isLast ? '' : 'border-bottom:1px solid #f0ede8;';
           h += `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;${sep}flex-wrap:wrap;">`;
-          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#f5f3ff;border:1px solid #e9e3ff;border-radius:4px;padding:2px 8px;">${s(c.from)}</span>`;
-          h += `<span style="font-family:var(--font-m);color:#5b21b6;font-size:14px;margin:0 4px;">→</span>`;
-          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#f5f3ff;border:1px solid #e9e3ff;border-radius:4px;padding:2px 8px;">${s(c.to)}</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#fef3e8;border:1px solid #fde8c8;border-radius:4px;padding:2px 8px;">${s(c.from)}</span>`;
+          h += `<span style="font-family:var(--font-m);color:#d4823a;font-size:14px;margin:0 4px;">→</span>`;
+          h += `<span style="font-family:var(--font-d);font-size:12px;font-weight:600;color:#1a1a1a;background:#fef3e8;border:1px solid #fde8c8;border-radius:4px;padding:2px 8px;">${s(c.to)}</span>`;
           if (c.how) h += `<span style="font-family:var(--font-d);font-size:12px;color:#6b6560;">: ${s(c.how)}</span>`;
           h += `</div>`;
         });
@@ -3535,13 +3563,13 @@ Never return JSON for a conversational question. Never return plain text for a s
           : d.weekendPlan.day2;
         if (day1Text) {
           h += `<div style="flex:1;min-width:200px;background:#faf9f7;border:1px solid #ede9e3;border-radius:8px;padding:14px 16px;">`;
-          h += `<div style="font-family:var(--font-m);font-size:10px;color:#5b21b6;font-weight:600;margin-bottom:6px;">DAY 1</div>`;
+          h += `<div style="font-family:var(--font-m);font-size:10px;color:#d4823a;font-weight:600;margin-bottom:6px;">DAY 1</div>`;
           h += `<div style="font-family:var(--font-d);font-size:13px;color:#3d3935;line-height:1.6;">${s(day1Text)}</div>`;
           h += `</div>`;
         }
         if (day2Text) {
           h += `<div style="flex:1;min-width:200px;background:#faf9f7;border:1px solid #ede9e3;border-radius:8px;padding:14px 16px;">`;
-          h += `<div style="font-family:var(--font-m);font-size:10px;color:#5b21b6;font-weight:600;margin-bottom:6px;">DAY 2</div>`;
+          h += `<div style="font-family:var(--font-m);font-size:10px;color:#d4823a;font-weight:600;margin-bottom:6px;">DAY 2</div>`;
           h += `<div style="font-family:var(--font-d);font-size:13px;color:#3d3935;line-height:1.6;">${s(day2Text)}</div>`;
           h += `</div>`;
         }
@@ -3552,7 +3580,7 @@ Never return JSON for a conversational question. Never return plain text for a s
       if (d.firstStepToday) {
         h += `<div style="padding:16px 20px;background:#1a1a1a;border-radius:0 0 12px 12px;">`;
         h += `<div style="font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">START NOW</div>`;
-        h += `<div style="font-family:var(--font-d);font-size:14px;font-weight:600;color:#ffffff;line-height:1.5;"><span style="color:#5b21b6;">→ </span>${s(d.firstStepToday)}</div>`;
+        h += `<div style="font-family:var(--font-d);font-size:14px;font-weight:600;color:#ffffff;line-height:1.5;"><span style="color:#d4823a;">→ </span>${s(d.firstStepToday)}</div>`;
         h += `</div>`;
       }
 
